@@ -1,1 +1,1 @@
-web: node standAloneProcessing.js
+web: node server.js
