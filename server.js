@@ -24,8 +24,8 @@ app.use(express.static(__dirname + '/public'));
 
 // routing
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
+  res.sendfile(__dirname + '/public/index.html');
 });
 app.get('/help', function (req, res) {
-  res.sendfile(__dirname + '/help/index.html');
+  res.sendfile(__dirname + '/public/help/index.html');
 });
