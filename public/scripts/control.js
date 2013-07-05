@@ -1,20 +1,26 @@
 // script to get postion to send to our cat laser tower
 
-// draggable widjet (simple jqui one)
-// store the position and the initial pos (inertia, if we time clicks ?)
-$( "#pointer" ).draggable({
-    containment: "#pointerCont", // constaining
-    scroll: false,
-    stop: function(ev, ui){
-        var position = ui.position;
-        var originalPosition = ui.originalPosition;
-        console.log(position);
-    }
-});
+
 
 
 window.onload = function() {
     'use strict';
+
+    // draggable widjet (simple jqui one)
+    // store the position and the initial pos (inertia, if we time clicks ?)
+    $( "#pointer" ).draggable({
+        containment: "#pointerCont", // constaining
+        scroll: false,
+        stop: function(ev, ui){
+            var position = ui.position;
+            var originalPosition = ui.originalPosition;
+            socket.emit("sliderVal", {
+                sliderX: position.top,
+                sliderY: position.left
+              });
+            //console.log(position);
+        }
+    });
 
     var env = "dev",
         servInfo;
