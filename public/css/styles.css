@@ -7009,3 +7009,95 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
   background-color: #555;
   border-radius: 50%;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_bases\.scss}line{font-family:\000031}}
+.ital {
+  font-style: italic;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_bases\.scss}line{font-family:\000035}}
+.cf:before,
+.cf:after,
+.row:before, .row:after {
+  display: table;
+  content: " ";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_bases\.scss}line{font-family:\0000311}}
+.cf:after,
+.row:after {
+  clear: both;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_bases\.scss}line{font-family:\0000314}}
+.cf,
+.row {
+  *zoom: 1;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_bases\.scss}line{font-family:\0000316}}
+.tac {
+  text-align: center;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_bases\.scss}line{font-family:\0000318}}
+.tal {
+  text-align: left;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_bases\.scss}line{font-family:\0000320}}
+.tar {
+  text-align: right;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_bases\.scss}line{font-family:\0000322}}
+.fll {
+  float: left;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_bases\.scss}line{font-family:\0000324}}
+.flr {
+  float: right;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_bases\.scss}line{font-family:\0000326}}
+.lh50 {
+  line-height: 50px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_bases\.scss}line{font-family:\0000328}}
+.scroll {
+  overflow-x: scroll;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_bases\.scss}line{font-family:\0000330}}
+.scrollY {
+  overflow-y: scroll;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_bases\.scss}line{font-family:\0000332}}
+.posR {
+  position: relative;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_bases\.scss}line{font-family:\0000334}}
+.mb1 {
+  margin-bottom: 1em;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_bases\.scss}line{font-family:\0000336}}
+.mb4 {
+  margin-bottom: 4em;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_bases\.scss}line{font-family:\0000338}}
+.bbx, #pointerCont {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_helpStyle\.scss}line{font-family:\000033}}
+.boardPict {
+  margin-top: 1em;
+}
