@@ -42,7 +42,9 @@ module.exports = (grunt) ->
 		jshint:
 			files: ['!node_modules',
 					'!public/components',
-					'*.js']
+					'!public/scripts/libs',
+					'*.js',
+					'public/scripts/*.js']
 
 			options:
 				# browser: true

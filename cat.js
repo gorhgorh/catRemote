@@ -34,7 +34,8 @@ var five = require("johnny-five"),  // johnny-five, enable us to talk to sir ard
     onlineLed,
     socket,
     client = require('socket.io-client'),
-    servInfo = 'http://localhost:4000/'
+    servInfo = 'http://localhost:4000/',
+    boardState
     ;
 
 // borad initialisation
@@ -56,7 +57,7 @@ board.on("ready", function() {
         laser:laser,
         onlineLed: onlineLed
     });
-
+    boardState = "groovy"; // the board is available (used to prevent move order before init)
 });
 
 // arduino <---> socket.
@@ -67,46 +68,49 @@ socket = client.connect(servInfo);
 socket.on('message', function (e) {
 
     // check if the message is a rotation value
+    // then move the servo if it is one.
+    // the page send a value between 0 and 1
+    // so we multiply it by 170 to get a 0 to 170° angle
+
     if(e.sliderX && e.sliderY){
-        servoX.move(e.sliderX);
-        servoY.move(e.sliderY);
+        servoX.move(Math.floor(e.sliderX *170));
+        servoY.move(Math.floor(e.sliderY *170));
     }
     // or a web client incoming in the io server
-    else if(e.noduinoEvent === 'webClientConnect'){
-        //onlineLed.on();
-        console.log("webclient online");
-        //pingLoop.pingLoopFunc(1000);
-
+    else if(e.client === "web"){
+        onlineLed.on(); // it lights the online led
+        console.log(e.client);
     }
+    // TODO : grate briquet and mouvements as libs to show module includes
     // or a light switch
     else if(e.noduinoEvent === 'ledSwitchAction'){
-        briquet.ledSwitch();
+        //briquet.ledSwitch();
     }
     else if(e.noduinoEvent === 'ledStrobeAction'){
-        briquet.ledPulse();
+        //briquet.ledPulse();
     }
     // or a mouvement
     else if(e.noduinoEvent === 'headNoAction'){
-        mouvements.headNo();
+        //mouvements.headNo();
     }
-    // or a CAMERA INPUT
-    else if(e.camVal){
-        /*
-            the cam stage is 320/240 0.0 is on the upper left corner
-            i converted input in % and multiplied for a 170° angle
-        */
-        if (controlled === false){
-            splitVal(e.camVal);
-            //console.log(cervoX);
-            if (boardState == "groovy"){
-                //console.log(cervoX + " : " + cervoY);
-                servo.move(cervoX);
-                servoY.move(cervoY);
-                //console.log(cervoX + "° : " + cervoY + "°");
-            }
-        }
+    // or a CAMERA INPUT, not sure i'll have time to hack that but in case ...
+    // else if(e.camVal){
+    //     /*
+    //         the cam stage is 320/240 0.0 is on the upper left corner
+    //         i converted input in % and multiplied for a 170° angle
+    //     */
+    //     if (controlled === false){
+    //         splitVal(e.camVal);
+    //         //console.log(cervoX);
+    //         if (boardState == "groovy"){
+    //             //console.log(cervoX + " : " + cervoY);
+    //             servo.move(cervoX);
+    //             servoY.move(cervoY);
+    //             //console.log(cervoX + "° : " + cervoY + "°");
+    //         }
+    //     }
 
-    }
+    // }
 
     // or a controll input
     else if (e.noduinoEvent === 'controlled'){
@@ -121,7 +125,6 @@ socket.on('message', function (e) {
     }
     else if (e.recStep){
         splitVal(e.recStep);
-        //console.log(cervoX);
         if (boardState == "groovy"){
             //console.log(cervoX + " : " + cervoY);
             servo.move(cervoX);

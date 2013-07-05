@@ -1,39 +1,11 @@
 // script to get postion to send to our cat laser tower
 
-
-
-
 window.onload = function() {
     'use strict';
 
-    // draggable widjet (simple jqui one)
-    // store the position and the initial pos (inertia, if we time clicks ?)
-    $( "#pointer" ).draggable({
-        containment: "#pointerCont", // constaining
-        scroll: false,
-        stop: function(ev, ui){
-            var position = ui.position;
-            var originalPosition = ui.originalPosition;
-            socket.emit("send", {
-                sliderX: position.top,
-                sliderY: position.left
-              });
-            //console.log(position);
-        }
-    });
 
     var env = "dev",
-        servInfo;
-
-    if (env === "prod"){
-        servInfo = 'http://intense-basin-8769.herokuapp.com/';
-    }
-    else{
-        servInfo = "http://localhost:4000/";
-    }
-
-    var // port = process.env.port,
-
+        servInfo = (env === "prod")?'http://intense-basin-8769.herokuapp.com/':"http://localhost:4000/",
         messages = [],
         socket = io.connect(servInfo),
 
@@ -44,13 +16,33 @@ window.onload = function() {
 
         // positions
         slideX,
-        slideY;
+        slideY,
+        sceneX = 598, // w/h of the web client controll boundries
+        sceneY = 378;
 
     console.log("connection to : " + servInfo);
 
+    // draggable widjet (simple jqui one)
+    // dragable zone dimention 598*378px
+    // send the position to the socket.io server
+    $( "#pointer" ).draggable({
+        containment: "#pointerCont", // constaining
+        scroll: false,
+        stop: function(ev, ui){
+            var position = ui.position;
+            var originalPosition = ui.originalPosition;
+            var posX = scale(sceneX,position.left);
+            var posY = scale(sceneY,position.top);
+            socket.emit("send", {
+                sliderX: posX,
+                sliderY: posY
+            });
+        }
+    });
+
+    // say hello when connecting
     socket.on('connect', function () {
-        console.log("ready to make a cat crazy");
-        socket.emit('send', { noduinoEvent: "webClientConnect"});
+        socket.emit('send', { noduinoEvent: "webClientConnect", client : "web"});
     });
     // receving message from the server
     socket.on('message', function (e) {
@@ -63,7 +55,7 @@ window.onload = function() {
                 html += messages[i].message + '<br />';
             }
             content.innerHTML = html;
-        // if it is a slider it goes to the robot
+        // if it is a noduinoEvent it goes to the robot
         } else if (e.noduinoEvent){
             console.log(e.noduinoEvent);
         }
@@ -73,7 +65,6 @@ window.onload = function() {
     // sending message
     ledSwitchBt.onclick = function() {
         socket.emit('send', { noduinoEvent : "ledSwitchAction"});
-        console.log('to');
     };
     ledStrobeBt.onclick = function() {
         socket.emit('send', { noduinoEvent : "ledStrobeAction"});
@@ -82,6 +73,9 @@ window.onload = function() {
         socket.emit('send', { noduinoEvent : "headNoAction"});
     };
 
-
-
 };
+
+// convert position info in a 0 to 1 int so we can use the
+function scale (maxVal, val) {
+    return val / maxVal;
+}
