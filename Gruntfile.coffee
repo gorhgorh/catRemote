@@ -11,24 +11,37 @@ module.exports = (grunt) ->
 			banner: '/*! <%= pkg.name %> - V: <%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n'
 
 			path:
+				#scripts
 				jsDir:"public/scripts/"
 
-		# Concat Task remplaced by the uglify script
-		# concat:
-		# 	options:
-		# 		banner: '<%= conf.banner %>'
+				#css
+				sassDir: 'public/scss/'
+				cssDir: 'public/css/'
+				imagesDir: 'public/images'
 
-		# 	prod:
-		# 		src:
-		# 			['<%= conf.path.libsDir %>/**/*.js']
+		#Compass task
+		compass:
+			options:
+				cssDir: '<%= conf.path.cssDir %>'
+				sassDir: '<%= conf.path.sassDir %>'
+				imagesDir: '<%= conf.path.imgDir %>'
+				# specify: ['<%= conf.path.sassDir %>_baseStyle.scss', 'public/sass/jquery-ui-1.10.2.custom.scss']
+				javascriptsDir: '<%= conf.path.jsDir %>'
+				force: true
+			files:['<%= conf.path.sassDir %>']
 
-		# 		dest: '<%= conf.path.libsDir %>/plugins.js'
+			dev:
+				options:
+					debugInfo :true
 
-
+			prod:
+				options:
+					debugInfo :false
 
 		# JSHint task
 		jshint:
 			files: ['!node_modules',
+					'!public/components',
 					'*.js']
 
 			options:
@@ -64,6 +77,8 @@ module.exports = (grunt) ->
 		# 	dev:
 		# 		sourceMap: true
 
+
+
 		#watch task
 		watch:
 
@@ -72,6 +87,11 @@ module.exports = (grunt) ->
 				'<%= jshint.files %>']
 
 				tasks: ['jshintage']
+
+			scss:
+				files: ['<%= compass.options.sassDir %>*.scss'],
+				tasks: ['compass:dev']
+
 
 
 			# coffee:
@@ -82,6 +102,7 @@ module.exports = (grunt) ->
 	# Load Grunt plugins.
 	@loadNpmTasks "grunt-contrib-watch"
 	@loadNpmTasks "grunt-contrib-jshint"
+	@loadNpmTasks "grunt-contrib-compass"
 	# @loadNpmTasks "grunt-contrib-coffee"
 
 

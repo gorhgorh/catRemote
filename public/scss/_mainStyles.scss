@@ -1,0 +1,18 @@
+@import "_bases.scss";
+
+.mainCont{margin-top: 60px;}
+
+// controller page styles
+// pointer styles
+#pointerCont{
+    @extend .bbx;
+    border: 1px solid black;
+    width: 100%;
+    height: 400px;
+}
+#pointer{
+    width: 20px;
+    height: 20px;
+    background-color: #555;
+    border-radius: 50%
+}

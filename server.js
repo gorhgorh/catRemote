@@ -13,6 +13,7 @@ var io = require('socket.io').listen(
         console.log("Listening on " + port);
         }
     ));
+var count = 0;
 
 // reduced log )
 io.set('log level', 1);
@@ -28,4 +29,34 @@ app.get('/', function (req, res) {
 });
 app.get('/help', function (req, res) {
   res.sendfile(__dirname + '/public/help/index.html');
+});
+
+// socket.io init
+io.sockets.on('connection', function (socket) {
+    count++;
+    console.log(count);
+    // say hello
+    socket.emit('message', { message: 'you are connected to the socket.io server, sir' });
+    // events
+    // messages
+    socket.on('send', function (data) {
+        io.sockets.emit('message', data);
+    });
+    // value from the webpage's slider
+    socket.on('sliderVal', function (data) {
+        io.sockets.emit('message', data);
+    // value from the camera
+    });
+    socket.on('camVal', function (data) {
+        io.sockets.emit('message', data);
+    });
+    socket.on('recStep', function (data) {
+        io.sockets.emit('message', data);
+    });
+
+    socket.on('disconnect', function () {
+        console.log('diconnected!!! ');
+        count--;
+        console.log(count);
+    });
 });

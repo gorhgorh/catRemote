@@ -3,8 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>laser control device</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    laser side
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="./index.html">Cat remote</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="./index.html">controller</a>
+                        </li>
+                        <li class="">
+                            <a href="/help/index.html">set by step</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mainCont">
+        <div class="row">
+            <div class="span4">
+                <div>
+                    <button type="button" class="btn btn-inverse btn-danger btn-small" id="ledSwitchBt">light switch</button>
+                    <button type="button" class="btn btn-inverse btn-danger btn-small" id="ledStrobeBt">light strobe</button>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-inverse btn-danger btn-small recBt" id="rec">record move</button>
+                    <button type="button" class="btn btn-inverse btn-danger btn-small recBt" id="stop">stop</button>
+                    <button type="button" class="btn btn-inverse btn-danger btn-small recBt" id="play">play</button>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-inverse btn-danger btn-small" id="headNoBt">No</button>
+
+                </div>
+            </div>
+            <div class="span8">
+                contoller cont
+                <div id="pointerCont">
+                    <div id="pointer"></div>
+                </div>
+                <div id="content" class="log" style=""></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/components/jquery/jquery.min.js"></script>
+    <script src="/scripts/libs/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="scripts/libs/socket.io.js"></script>
+
+    <script src="scripts/control.js"></script>
+
+
 </body>
 </html>
