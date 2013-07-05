@@ -25,15 +25,19 @@
 // this file is the robot itself, or its mind, you decide,
 // and it is javascript all the way.
 
-
+// variables
 var five = require("johnny-five"),  // johnny-five, enable us to talk to sir arduino
     board = new five.Board(),       // initialise a board instance that will contain instance of our hardware
     servo,
     servoY,
     laser,
-    onlineLed;
+    onlineLed,
+    socket,
+    client = require('socket.io-client'),
+    servInfo = 'http://localhost:4000/'
+    ;
 
-//
+// borad initialisation
 board.on("ready", function() {
 
     // in this section we will create instances for our hardware
@@ -55,3 +59,80 @@ board.on("ready", function() {
 
 });
 
+// arduino <---> socket.
+
+// arduino, meet the socke.io server
+socket = client.connect(servInfo);
+// the server tell me something
+socket.on('message', function (e) {
+
+    // check if the message is a rotation value
+    if(e.sliderX && e.sliderY){
+        servoX.move(e.sliderX);
+        servoY.move(e.sliderY);
+    }
+    // or a web client incoming in the io server
+    else if(e.noduinoEvent === 'webClientConnect'){
+        //onlineLed.on();
+        console.log("webclient online");
+        //pingLoop.pingLoopFunc(1000);
+
+    }
+    // or a light switch
+    else if(e.noduinoEvent === 'ledSwitchAction'){
+        briquet.ledSwitch();
+    }
+    else if(e.noduinoEvent === 'ledStrobeAction'){
+        briquet.ledPulse();
+    }
+    // or a mouvement
+    else if(e.noduinoEvent === 'headNoAction'){
+        mouvements.headNo();
+    }
+    // or a CAMERA INPUT
+    else if(e.camVal){
+        /*
+            the cam stage is 320/240 0.0 is on the upper left corner
+            i converted input in % and multiplied for a 170° angle
+        */
+        if (controlled === false){
+            splitVal(e.camVal);
+            //console.log(cervoX);
+            if (boardState == "groovy"){
+                //console.log(cervoX + " : " + cervoY);
+                servo.move(cervoX);
+                servoY.move(cervoY);
+                //console.log(cervoX + "° : " + cervoY + "°");
+            }
+        }
+
+    }
+
+    // or a controll input
+    else if (e.noduinoEvent === 'controlled'){
+        controlled=true;
+        console.log(controlled);
+        console.log(e);
+    }
+    else if (e.noduinoEvent === 'notControlled'){
+        controlled=false;
+        console.log(controlled);
+        console.log(e);
+    }
+    else if (e.recStep){
+        splitVal(e.recStep);
+        //console.log(cervoX);
+        if (boardState == "groovy"){
+            //console.log(cervoX + " : " + cervoY);
+            servo.move(cervoX);
+            servoY.move(cervoY);
+            //console.log(cervoX + "° : " + cervoY + "°");
+        }
+    }
+
+    // or log it
+    else{
+        //console.log(e);
+    }
+
+});

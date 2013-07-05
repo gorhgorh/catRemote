@@ -14,7 +14,7 @@ window.onload = function() {
         stop: function(ev, ui){
             var position = ui.position;
             var originalPosition = ui.originalPosition;
-            socket.emit("sliderVal", {
+            socket.emit("send", {
                 sliderX: position.top,
                 sliderY: position.left
               });
