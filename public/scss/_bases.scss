@@ -1,0 +1,42 @@
+.ital{ font-style: italic; }
+
+.cf:before,
+.cf:after,
+.row:before,.row:after{
+    display: table;
+    content: " ";
+}
+
+.cf:after,
+.row:after { clear: both; }
+
+.cf,
+.row { *zoom: 1; }
+
+.tac { text-align: center; }
+
+.tal{ text-align: left; }
+
+.tar{ text-align: right; }
+
+.fll{ float: left; }
+
+.flr{ float: right; }
+
+.lh50{ line-height: 50px; }
+
+.scroll{ overflow-x: scroll; }
+
+.scrollY{ overflow-y: scroll ; }
+
+.posR{ position: relative; }
+
+.mb1{ margin-bottom: 1em; }
+
+.mb4{ margin-bottom: 4em; }
+
+.bbx {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
