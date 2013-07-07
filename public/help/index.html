@@ -78,8 +78,6 @@
                     <li>git</li>
                     <li>your favorite javascript editor</li>
                     <li>firmata upladed to you arduino (see <a href="https://github.com/rwldrn/johnny-five" target="_blank">here</a> for details)</li>
-                    <li>1 Laser Diode - 5mW whatever color</li>
-                    <li>1 servo bracket (optional)</li>
                 </ul>
             </div>
         </section>
@@ -88,9 +86,12 @@
                 <h1>Step one, at the begining there was one led</h1>
                 <p>
                     first things first, to controll a led we will need to link it to our board. <br>
-                    to power the led the 5v of the arduino is too strong so we will put a 220 ohm restistor in the circuit, a shown bellow
-                </p>
+                    to power the led the 5v of the arduino is too strong so we will put a 220 ohm restistor in the circuit, a shown bellow: <br><br>
+                    <span class="label label-info">Note</span> we are using two kind of electronic components here.
+                    <p>the led, is an polarised component, so it has 2 diffent pins, the anode (+) is the longer one, and the cathode (-) is the smaller one, you need to connect you led's cathode to the ground, and the anode to your' arduino dgital pin 13, allowing you to control via J5 wherether the is current or not.</p>
+                    <p>the resistor is not polarised, so we dont have to worry about the side we link power to it, we use it to lower the current that the arduino is delivering to the led thanks to <a href="https://en.wikipedia.org/wiki/Ohm's_law">ohm's law</a></p>
 
+                </p>
                 <img src="/svg/01led.svg" class="boardPict" alt="">
             </div>
         </section>

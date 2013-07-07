@@ -2,20 +2,22 @@
 
 ###things to do :
 
-- tool list
-- material list (what provider should i refer to ?)
+- X tool list
+- X material list (done but not sure if i shoul point to hardware resalers)
 - harware set up tutorial pict and illustration
-- clean the whole program (already done basic setup)
+  - text for the led done
+  - diargram for servo done
+- X clean the whole program (already done basic setup)
 - software tutorial
   - nodebot part
     - basic led example
-    - connecting the servos
     - repl test
+    - connecting the servos
     - event chaining
     - link to socket.io ?
     - begin contoller part
         - web controller
-          - give basic html markup and system to control the device, since it all about the bots
+          - X give basic html markup and system to control the device, since it all about the bots
           - link input of the widget to socket.io
           - extend the bot to act after the messages
         - hardware joystick

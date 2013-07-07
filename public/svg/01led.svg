@@ -31,7 +31,7 @@
   </g>
  </g>
  <g partID="20600">
-  <g transform="translate(151.2,71.2142)">
+  <g transform="translate(151.2,71.2144)">
    <g transform="matrix(0,1,-1,0,0,0)">
     <g id="breadboardbreadboard">
      <g id="background">
@@ -4347,7 +4347,7 @@
   </g>
  </g>
  <g partID="56280">
-  <g transform="translate(381.596,25.2814)">
+  <g transform="translate(381.596,25.2812)">
    <g transform="matrix(0,1,-1,0,0,0)">
     <g id="breadboard">
      <g id="icon">
@@ -6866,10 +6866,10 @@
    </g>
   </g>
  </g>
- <path fill="none" stroke="#8c8c8c" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.15136" d="M62.1839,125.734L86.4,125.334"/>
- <path fill="none" stroke="#8c8c8c" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.15136" d="M62.1839,118.532L86.8,118.532"/>
+ <path fill="none" stroke="#8c8c8c" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.15136" d="M61.7839,154.136L86,153.736"/>
+ <path fill="none" stroke="#8c8c8c" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.15136" d="M61.7839,146.934L86.4,146.934"/>
  <g partID="56340">
-  <g transform="translate(32.9771,130.26)">
+  <g transform="translate(32.5771,158.663)">
    <g transform="matrix(0,-1,1,0,0,0)">
     <g  id="breadboard">
      <rect width="2.15208" x="3.45096" y="25.421" fill="none"  height="0.72" id="connector0pin"/>
@@ -6897,10 +6897,10 @@
    </g>
   </g>
  </g>
- <path fill="none" stroke="#8c8c8c" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.0952" d="M108,126.381L108,125.334"/>
- <path fill="none" stroke="#8c8c8c" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.0952" d="M108,153.091L108,154.139"/>
+ <path fill="none" stroke="#8c8c8c" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.0952" d="M108,119.177L108,118.129"/>
+ <path fill="none" stroke="#8c8c8c" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.0952" d="M108,145.886L108,146.934"/>
  <g partID="57670">
-  <g transform="translate(111.632,124.286)">
+  <g transform="translate(111.632,117.081)">
    <g transform="matrix(0,1,-1,0,0,0)">
     <g  id="breadboard">
      <rect width="0.72" x="0.36" y="2.5848" fill="none"  height="0.72" id="connector0pin"/>
@@ -6931,24 +6931,24 @@
   <line stroke="#000000" stroke-linecap="round" y1="154.148" x1="144" y2="154.134" stroke-width="3.2" x2="115.2"/>
   <line stroke="#404040" stroke-linecap="round" y1="154.148" x1="144" y2="154.134" stroke-width="1.6" x2="115.2"/>
  </g>
+ <g partID="57930">
+  <line stroke="#8c0000" stroke-linecap="round" y1="125.334" x1="374.397" y2="125.334" stroke-width="3.2" x2="403.463"/>
+  <line stroke="#cc1414" stroke-linecap="round" y1="125.334" x1="374.397" y2="125.334" stroke-width="1.6" x2="403.463"/>
+ </g>
  <g partID="58210">
   <line stroke="#8c0000" stroke-linecap="round" y1="3.2" x1="403.463" y2="3.2" stroke-width="3.2" x2="216.263"/>
   <line stroke="#cc1414" stroke-linecap="round" y1="3.2" x1="403.463" y2="3.2" stroke-width="1.6" x2="216.263"/>
- </g>
- <g partID="57930">
-  <line stroke="#8c0000" stroke-linecap="round" y1="125.333" x1="374.396" y2="125.333" stroke-width="3.2" x2="403.463"/>
-  <line stroke="#cc1414" stroke-linecap="round" y1="125.333" x1="374.396" y2="125.333" stroke-width="1.6" x2="403.463"/>
  </g>
  <g partID="58270">
   <line stroke="#8c0000" stroke-linecap="round" y1="3.2" x1="216.263" y2="118.4" stroke-width="3.2" x2="216.263"/>
   <line stroke="#cc1414" stroke-linecap="round" y1="3.2" x1="216.263" y2="118.4" stroke-width="1.6" x2="216.263"/>
  </g>
+ <g partID="58150">
+  <line stroke="#8c0000" stroke-linecap="round" y1="125.334" x1="403.463" y2="3.2" stroke-width="3.2" x2="403.463"/>
+  <line stroke="#cc1414" stroke-linecap="round" y1="125.334" x1="403.463" y2="3.2" stroke-width="1.6" x2="403.463"/>
+ </g>
  <g partID="58330">
   <line stroke="#8c0000" stroke-linecap="round" y1="118.4" x1="216.263" y2="118.134" stroke-width="3.2" x2="115.2"/>
   <line stroke="#cc1414" stroke-linecap="round" y1="118.4" x1="216.263" y2="118.134" stroke-width="1.6" x2="115.2"/>
- </g>
- <g partID="58150">
-  <line stroke="#8c0000" stroke-linecap="round" y1="125.333" x1="403.463" y2="3.2" stroke-width="3.2" x2="403.463"/>
-  <line stroke="#cc1414" stroke-linecap="round" y1="125.333" x1="403.463" y2="3.2" stroke-width="1.6" x2="403.463"/>
  </g>
 </svg>

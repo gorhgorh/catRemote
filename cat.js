@@ -35,6 +35,7 @@ var five = require("johnny-five"),  // johnny-five, enable us to talk to sir ard
     socket,
     client = require('socket.io-client'),
     servInfo = 'http://localhost:4000/',
+    //  servInfo = 'http://localhost:4000/',
     boardState
     ;
 
@@ -81,7 +82,8 @@ socket.on('message', function (e) {
         onlineLed.on(); // it lights the online led
         console.log(e.client);
     }
-    // TODO : grate briquet and mouvements as libs to show module includes
+
+    // TODO : create "briquet" and "mouvements" as libs to show module includes
     // or a light switch
     else if(e.noduinoEvent === 'ledSwitchAction'){
         //briquet.ledSwitch();
@@ -123,15 +125,16 @@ socket.on('message', function (e) {
         console.log(controlled);
         console.log(e);
     }
-    else if (e.recStep){
-        splitVal(e.recStep);
-        if (boardState == "groovy"){
-            //console.log(cervoX + " : " + cervoY);
-            servo.move(cervoX);
-            servoY.move(cervoY);
-            //console.log(cervoX + "° : " + cervoY + "°");
-        }
-    }
+    // step recorder not implemented yet
+    // else if (e.recStep){
+    //     splitVal(e.recStep);
+    //     if (boardState == "groovy"){
+    //         //console.log(cervoX + " : " + cervoY);
+    //         servo.move(cervoX);
+    //         servoY.move(cervoY);
+    //         //console.log(cervoX + "° : " + cervoY + "°");
+    //     }
+    // }
 
     // or log it
     else{

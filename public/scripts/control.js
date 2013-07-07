@@ -28,9 +28,9 @@ window.onload = function() {
     $( "#pointer" ).draggable({
         containment: "#pointerCont", // constaining
         scroll: false,
-        stop: function(ev, ui){
+
+        drag: function (ev, ui) {
             var position = ui.position;
-            var originalPosition = ui.originalPosition;
             var posX = scale(sceneX,position.left);
             var posY = scale(sceneY,position.top);
             socket.emit("send", {
