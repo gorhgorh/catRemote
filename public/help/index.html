@@ -33,12 +33,31 @@
     <div class="container mainCont">
 
         <section class="row" id="intro">
+            <div class="span12 stripeRow">
+                <div class="row ">
+                    <div class="row">
+                        <div class="span7"></div>
+                        <div class="span5">
+                            <h1 class="ttl">Node propulsed cat remote control, the plan</h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
             <div class="span12">
-                <h1>Node propulsed cat remote control, HOW TO</h1>
-                <p>
-                    This project is a walk through simple contol of a laser with 2 servo, alowing you to pan/tilt it, we will also explore simple control through a simple web server, all via javascript, thanks to firmata and johnny five.
-                    on top of that it will allow you to remotely control a cat whine on a hangout with him, for example.
-                </p>
+                <div class="row">
+                    <div class="span4"><img src="/images/bioPict.png" alt=""></div>
+                    <div class="span8">
+                        <br><p>
+                            This project is a walk through simple contol of a laser with 2 servo, alowing you to pan/tilt it, we will also explore simple control through a simple web server, all via javascript, thanks to firmata and johnny five.
+                            on top of that it will allow you to remotely control a cat while on a hangout with him, for example.
+                        </p>
+                        <p>
+                            it is roughly a guide line, and i encourage you to tweak it rather than follow it, if you find it too simple extend it as you with this is still the old javascript you work with every day, so extend it commit changes, have fun, makes some cat happy !
+                            <h1>Happy nodebot's day</h1>
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -47,9 +66,9 @@
                 <h1>Tool list</h1>
                 <ul>
                     <li>little screwdriver</li>
-                    <li>third hand</li>
                     <li>Blu-Tack or similar</li>
                     <li>wire</li>
+                    <li>third hand (optional, but handy)</li>
                     <li>solder iron and solder (optional)</li>
                 </ul>
                 <p>the solder iron is used only to solder the laser cables, to make them easyer to pin to to breadboard</p>
@@ -86,16 +105,63 @@
                 <h1>Step one, at the begining there was one led</h1>
                 <p>
                     first things first, to controll a led we will need to link it to our board. <br>
-                    to power the led the 5v of the arduino is too strong so we will put a 220 ohm restistor in the circuit, a shown bellow: <br><br>
-                    <span class="label label-info">Note</span> we are using two kind of electronic components here.
-                    <p>the led, is an polarised component, so it has 2 diffent pins, the anode (+) is the longer one, and the cathode (-) is the smaller one, you need to connect you led's cathode to the ground, and the anode to your' arduino dgital pin 13, allowing you to control via J5 wherether the is current or not.</p>
-                    <p>the resistor is not polarised, so we dont have to worry about the side we link power to it, we use it to lower the current that the arduino is delivering to the led thanks to <a href="https://en.wikipedia.org/wiki/Ohm's_law">ohm's law</a></p>
-
+                    to power the led the 5v of the arduino is too strong so we will put a 220 ohm restistor in the circuit, a shown bellow:
                 </p>
-                <img src="/svg/01led.svg" class="boardPict" alt="">
+                <div class="row">
+                    <div class="span8">
+                        <img src="/images/01led.png" class="boardPict" alt="">
+                    </div>
+                    <div class="span4">
+                        <p>
+                            <span class="label label-info">Note</span> we are using two kind of electronic components here.
+                        <p>
+                        <p>
+                            the led, is an polarised component, so it has 2 diffent pins, the anode (+) is the longer one, and the cathode (-) is the smaller one, you need to connect you led's cathode to the ground, and the anode to your' arduino dgital pin 13, allowing you to control via J5 wherether the is current or not.
+                        </p>
+                        <p>
+                            the resistor is not polarised, so we dont have to worry about the side we link power to it, we use it to lower the current that the arduino is delivering to the led thanks to <a href="https://en.wikipedia.org/wiki/Ohm's_law">ohm's law</a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
+        <section class="row">
+            <div class=span12>
+                <h3>and now ladies and gentlemans ... javascript</h3>
+                <p>
+                    if you can read this, i can assume you installed this repository if not go <a href="#additional">here</a> first
+                </p>
+                <p>
+                    open a terminal in the cloned repo and create a file, say myCat.js, open it in your editor
+                </p>
+                <p>let's take control of this led with command line !</p>
+<pre>
+var five = require("johnny-five"),  // johnny-five, enable us to talk to sir arduino
+    board = new five.Board(),       // it will contain objects that will allow us to manipulate hardware
+    onlineLed;                      // our fist piece of hardware, a little led
 
+// borad initialisation
+board.on("ready", function() {      // remember jquery ?
+
+    // in this section we will create an instance of the led object for our led
+    onlineLed = new five.Led(13);   // our led linked to the digital pin13
+
+    // inject our hardware in the Repl, so we can talk with it in the command line
+    board.repl.inject({
+        onlineLed: onlineLed
+    });
+});
+</pre>
+                <p>
+                    now <code>node myCat.js</code> and let's see what we can do!</p>
+            </div>
+        </section>
+        <section class="row">
+
+            <div class="span12">
+                <h1 id="additional">additional steps</h1>
+            </div>
+        </section>
     </div>
 
     <script src="/scripts/libs/jquery.min.js"></script>

@@ -6991,18 +6991,28 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_mainStyles\.scss}line{font-family:\000033}}
+.stripeRow {
+  background: transparent url(/images/stripe.png) left top no-repeat;
+  height: 256px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_mainStyles\.scss}line{font-family:\000036}}
+.stripeRow .ttl {
+  color: #fff;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_mainStyles\.scss}line{font-family:\0000310}}
 .mainCont {
   margin-top: 60px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_mainStyles\.scss}line{font-family:\000037}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_mainStyles\.scss}line{font-family:\0000314}}
 #pointerCont {
   border: 1px solid black;
   width: 100%;
   height: 400px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_mainStyles\.scss}line{font-family:\0000313}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_mainStyles\.scss}line{font-family:\0000320}}
 #pointer {
   width: 20px;
   height: 20px;
@@ -7099,5 +7109,5 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jeromeloi\/code\/perso\/catRemote\/public\/scss\/_helpStyle\.scss}line{font-family:\000033}}
 .boardPict {
-  margin-top: 1em;
+  margin: 1em 0;
 }
