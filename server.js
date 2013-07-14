@@ -16,7 +16,7 @@ var io = require('socket.io').listen(
 var count = 0;
 
 // reduced log )
-io.set('log level', 1);
+//io.set('log level', 1);
 
 app.use(express.logger());
 
@@ -59,4 +59,5 @@ io.sockets.on('connection', function (socket) {
         count--;
         console.log(count);
     });
+
 });
