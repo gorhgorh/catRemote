@@ -14,9 +14,13 @@ var io = require('socket.io').listen(
         }
     ));
 var count = 0;
+// used for unity lauche a tcp server at port 5000
+var tcpPort = require('/Users/jeromeloi/code/catRemote//lib/unityPort');
+
+tcpPort()   ;
 
 // reduced log )
-//io.set('log level', 1);
+io.set('log level', 1);
 
 app.use(express.logger());
 
