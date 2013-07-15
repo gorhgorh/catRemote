@@ -34,7 +34,7 @@ var five = require("johnny-five"),  // johnny-five, enable us to talk to sir ard
     onlineLed,
     socket,
     client = require('socket.io-client'),
-    servInfo = 'http://192.168.2.191:4000/',
+    servInfo = 'http://localhost:4000',
     //servInfo = 'http://192.168.2.191:4000/',
     boardState
     ;
