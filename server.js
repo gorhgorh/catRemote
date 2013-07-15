@@ -14,14 +14,13 @@ var io = require('socket.io').listen(
         }
     ));
 var count = 0;
-// used for unity lauche a tcp server at port 5000
+// used for unity launch a tcp server at port 5000
 var tcpPort = require('./lib/unityPort');
-
 tcpPort();
 
 // reduced log )
 io.set('log level', 1);
-
+    
 app.use(express.logger());
 
 // Public files
