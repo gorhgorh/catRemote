@@ -4,7 +4,7 @@ PORT =			"4666"
 client =		new net.Socket();
 client.connect(PORT,HOST, function  () {
 	console.log("CONNECTED TO THE BLODDY SERVER @: " + HOST + ":" + PORT);
-	client.write("i'm kenshiro, and you can't beat me")
+	client.write("0123456789")
 });
 client.on('data', function (data) {
 	console.log("DATA" + data);
