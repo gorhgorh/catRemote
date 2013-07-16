@@ -153,7 +153,15 @@ board.on("ready", function() {      // remember jquery ?
 });
 </pre>
                 <p>
-                    now <code>node myCat.js</code> and let's see what we can do!</p>
+                    now <code>node myCat.js</code> and let's see what we can do!
+                </p>
+                <p>
+                    <span class="label label-info">Note</span> if you look at the led while the board boots, you can see that it is blinking, and that it blinks at the same time that the arduino onboard led is blinking, this is because the 13 th pin is link to this onboard led, that tells us the status of the board (remember your pc's beeps ?)
+                </p>
+                <p>
+                    so now we have a REPL promt, then ... <br>
+                    then, we can call our led instance, to see what this is all about, <code>onlineLed</code>
+                </p>
             </div>
         </section>
         <section class="row">
