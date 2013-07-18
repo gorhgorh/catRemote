@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>robot 101</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/prism.css">
 </head>
 <body>
 
@@ -38,7 +39,7 @@
                     <div class="row">
                         <div class="span7"></div>
                         <div class="span5">
-                            <h1 class="ttl">Node propulsed cat remote control, the plan</h1>
+                            <h1 class="ttl">Node propulsed cat remote control</h1>
                         </div>
                     </div>
 
@@ -100,7 +101,7 @@
                 </ul>
             </div>
         </section>
-        <section class="row">
+        <section class="row" id="step01">
             <div class="span12">
                 <h1>Step one, at the begining there was one led</h1>
                 <p>
@@ -126,31 +127,33 @@
             </div>
         </section>
         <section class="row">
-            <div class=span12>
+            <div class="span12">
                 <h3>and now ladies and gentlemans ... javascript</h3>
                 <p>
-                    if you can read this, i can assume you installed this repository if not go <a href="#additional">here</a> first
+                    if you can read this, i can assume you cloned this repository if not go <a href="#additional">here</a> first
                 </p>
                 <p>
                     open a terminal in the cloned repo and create a file, say myCat.js, open it in your editor
                 </p>
                 <p>let's take control of this led with command line !</p>
 <pre>
-var five = require("johnny-five"),  // johnny-five, enable us to talk to sir arduino
-    board = new five.Board(),       // it will contain objects that will allow us to manipulate hardware
-    onlineLed;                      // our fist piece of hardware, a little led
+    <code class="language-javascript">
+    var five = require("johnny-five"),  // johnny-five, enable us to talk to sir arduino
+        board = new five.Board(),       // it will contain objects that will allow us to manipulate hardware
+        onlineLed;                      // our fist piece of hardware, a little led
 
-// borad initialisation
-board.on("ready", function() {      // remember jquery ?
+    // borad initialisation
+    board.on("ready", function() {      // remember jquery ?
 
-    // in this section we will create an instance of the led object for our led
-    onlineLed = new five.Led(13);   // our led linked to the digital pin13
+        // in this section we will create an instance of the led object for our led
+        onlineLed = new five.Led(13);   // our led linked to the digital pin13
 
-    // inject our hardware in the Repl, so we can talk with it in the command line
-    board.repl.inject({
-        onlineLed: onlineLed
+        // inject our hardware in the Repl, so we can talk with it in the command line
+        board.repl.inject({
+            onlineLed: onlineLed
+        });
     });
-});
+    </code>
 </pre>
                 <p>
                     now <code>node myCat.js</code> and let's see what we can do!
@@ -160,8 +163,16 @@ board.on("ready", function() {      // remember jquery ?
                 </p>
                 <p>
                     so now we have a REPL promt, then ... <br>
-                    then, we can call our led instance, to see what this is all about, <code>onlineLed</code>
+                    then, we can call our led instance, to see what this is all about, <code>onlineLed.on()</code> and, tada a new led is lit !
                 </p>
+                </p>
+                    if you want to see more, you could dig in the /node_modules/johnny-five/eg/led-*.js files, but for now you should know about <code>onlineLed.on()</code>, <code>onlineLed.off()</code>, and <code>onlineLed.on()</code> <code>onlineLed.pulse()</code> (to remember the good old blink times)
+                </p>
+            </div>
+        </section>
+        <section class="row" id="step01">
+            <div class="span12">
+                <h1>Step Two, adding motion</h1>
             </div>
         </section>
         <section class="row">
@@ -173,6 +184,8 @@ board.on("ready", function() {      // remember jquery ?
     </div>
 
     <script src="/scripts/libs/jquery.min.js"></script>
+    <script src="/scripts/libs/prism.js"></script>
+
 
 </body>
 </html>
