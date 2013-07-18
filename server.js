@@ -22,6 +22,7 @@ tcpPort();
 io.set('log level', 1);
     
 app.use(express.logger());
+app.use(express.compress());
 
 // Public files
 app.use(express.static(__dirname + '/public'));

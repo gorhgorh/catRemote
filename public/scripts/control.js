@@ -3,7 +3,7 @@
 window.onload = function() {
     'use strict';
 
-    var serverUrl="http://localhost:4000/"
+    var serverUrl="http://localhost:4000/";
     //var serverUrl="http://192.168.2.191:4000/"
     var env = "dev",
         servInfo = (env === "prod")?'http://intense-basin-8769.herokuapp.com/':serverUrl,
