@@ -14,7 +14,7 @@ it is built to be simple, exposing control of key elements that could lead to mo
     - [ ] tutorial (30%)
     - [x] pict and illustration
   - [x] text for the led 
-  - [x] diagram for servo done
+  - [x] diagram for servo
 - [x] clean the whole  (already done basic setup)
 - software tutorial
   - nodebot part
@@ -24,7 +24,7 @@ it is built to be simple, exposing control of key elements that could lead to mo
     - [ ] event chaining
     - [ ] link to socket.io ?
     - [ ] begin controller part
-        - web controller
+        - [x] web controller
           - [x] give basic html markup and system to control the device, since it all about the bots
           - [x] link input of the widget to socket.io
           - [x] extend the bot to act after the messages
