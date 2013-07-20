@@ -26,7 +26,9 @@
 // and it is javascript all the way.
 
 // variables
-var five = require("johnny-five"),  // johnny-five, enable us to talk to sir arduino
+
+var five = require('johnny-five'),  // johnny-five, enable us to talk to sir arduino
+    config = require('./config'),
     board = new five.Board(),       // initialise a board instance that will contain instance of our hardware
     servo,
     servoY,
@@ -34,13 +36,12 @@ var five = require("johnny-five"),  // johnny-five, enable us to talk to sir ard
     onlineLed,
     socket,
     client = require('socket.io-client'),
-    servInfo = 'http://localhost:4000',
-    //servInfo = 'http://192.168.2.191:4000/',
+    servInfo = config.servInfo.url+':'+config.servInfo.port,
     boardState
     ;
 
 // borad initialisation
-board.on("ready", function() {
+board.on('ready', function() {
 
     // in this section we will create instances for our hardware
     // This example allows the button module to
@@ -58,7 +59,8 @@ board.on("ready", function() {
         laser:laser,
         onlineLed: onlineLed
     });
-    boardState = "groovy"; // the board is available (used to prevent move order before init)
+    boardState = '  groovy'   ; // the board is available (used to prevent move order before init)
+    console.log(servInfo);
 });
 
 // arduino <---> socket.
@@ -86,7 +88,7 @@ socket.on('message', function (e) {
     // TODO : create "briquet" and "mouvements" as libs to show module includes
     // or a light switch
     else if(e.noduinoEvent === 'ledSwitchAction'){
-        //briquet.ledSwitch();
+        onlineLed.on();
     }
     else if(e.noduinoEvent === 'ledStrobeAction'){
         //briquet.ledPulse();

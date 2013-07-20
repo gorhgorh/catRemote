@@ -3,20 +3,21 @@
 // for the tutorial part.
 
 // standard express server + socket.io on port:4000
-var express = require("express");
-var app = express();
-var http = require('http');
-var server = http.createServer(app);
-var port = process.env.PORT || 4000; // listen to heroku's port or 4000
-var io = require('socket.io').listen(
+var express = require("express"),
+    app = express(),
+    config = require('./config'),
+    http = require('http'),
+    server = http.createServer(app),
+    port = process.env.PORT || config.servInfo.port, // listen to heroku's port or 4000
+    io = require('socket.io').listen(
     app.listen(port,function() {
         console.log("Listening on " + port);
         }
     ));
 var count = 0;
 // used for unity launch a tcp server at port 5000
-var tcpPort = require('./lib/tcpPortServer');
-tcpPort();
+//var tcpPort = require('./lib/tcpPortServer');
+//tcpPort();
 
 // reduced log )
 io.set('log level', 1);
