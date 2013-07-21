@@ -52,7 +52,7 @@ board.on('ready', function() {
     // in this section we will create instances for our hardware
     // This example allows the button module to
     // create a completely default instance
-    //laser     = createLaser(12);     // cat mesmeriser
+    laser     = createLaser(12);     // cat mesmeriser
     onlineLed = new five.Led(13);     // a led to test the board
     servoX    = new five.Servo(10);   // servo for the X axis
     servoY    = new five.Servo(9);    // servo for the Y axis
@@ -70,7 +70,7 @@ board.on('ready', function() {
     // center the bot, ensure the laser is off
     servoX.center();
     servoY.center();
-    laser.off();
+    //laser.off();
     
 });
 
