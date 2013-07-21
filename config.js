@@ -10,5 +10,4 @@ config.cat.eventLog = true;
 config.tcpPortServer ={};
 config.tcpPortServer.port = 4666;
 
-
 module.exports = config;

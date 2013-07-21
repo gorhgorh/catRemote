@@ -26,12 +26,16 @@
 // and it is javascript all the way.
 
 // variables
+//"use strict";
+
+
 
 var five = require('johnny-five'),  // johnny-five, enable us to talk to sir arduino
+    util = require('util'),
     config = require('./config'),   // configuration file, sharded with the server
     briquet = require('./lib/briquet.js'),   // configuration file, sharded with the server
     board = new five.Board(),       // initialise a board instance that will contain instance of our hardware
-    servo,
+    servoX,
     servoY,
     laser,
     onlineLed,
@@ -42,13 +46,13 @@ var five = require('johnny-five'),  // johnny-five, enable us to talk to sir ard
     truc
     ;
 
-// borad initialisation
+// board initialisation
 board.on('ready', function() {
 
     // in this section we will create instances for our hardware
     // This example allows the button module to
     // create a completely default instance
-    laser     = new five.Led(12);     // cat mesmeriser
+    //laser     = createLaser(12);     // cat mesmeriser
     onlineLed = new five.Led(13);     // a led to test the board
     servoX    = new five.Servo(10);   // servo for the X axis
     servoY    = new five.Servo(9);    // servo for the Y axis
@@ -73,7 +77,7 @@ board.on('ready', function() {
 // arduino <---> socket.
 
 // arduino, meet the socke.io server
-socket = client.connect(servInfo);
+var socket = client.connect(servInfo);
 // the server tell me something
 socket.on('message', function (e) {
 
@@ -150,3 +154,9 @@ socket.on('message', function (e) {
     }
 
 });
+// factory funtion to add a on/off state
+function createLaser(pin) {
+    var laser = new five.Led(pin);
+    laser.blink = { state:false };
+    return laser;
+}

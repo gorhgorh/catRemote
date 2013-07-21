@@ -1,7 +1,6 @@
 // script to get postion to send to our cat laser tower
 
 window.onload = function() {
-    'use strict';
 
     var serverUrl="http://localhost:4000/";
     var env = "dev",
@@ -62,20 +61,8 @@ window.onload = function() {
         console.log(e);
     });
 
-    io.sockets.on('connection', function (socket) {
-    count++;
-    io.sockets.emit('count', {
-        number: count
-    });
+// end document ready    
 
-    socket.on('disconnect', function () {
-        console.log('DISCONNESSO!!! ');
-        count--;
-        io.sockets.emit('count', {
-            number: count
-        });
-    });
-});
 
     // sending message
     ledSwitchBt.onclick = function() {
