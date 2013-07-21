@@ -28,7 +28,8 @@
 // variables
 
 var five = require('johnny-five'),  // johnny-five, enable us to talk to sir arduino
-    config = require('./config'),
+    config = require('./config'),   // configuration file, sharded with the server
+    briquet = require('./lib/briquet.js'),   // configuration file, sharded with the server
     board = new five.Board(),       // initialise a board instance that will contain instance of our hardware
     servo,
     servoY,
@@ -37,7 +38,8 @@ var five = require('johnny-five'),  // johnny-five, enable us to talk to sir ard
     socket,
     client = require('socket.io-client'),
     servInfo = config.servInfo.url+':'+config.servInfo.port,
-    boardState
+    boardState,
+    truc
     ;
 
 // borad initialisation
@@ -59,8 +61,13 @@ board.on('ready', function() {
         laser:laser,
         onlineLed: onlineLed
     });
-    boardState = '  groovy'   ; // the board is available (used to prevent move order before init)
+    boardState = 'groovy'; // the board is available (used to prevent move order before init)
     console.log(servInfo);
+    // center the bot, ensure the laser is off
+    servoX.center();
+    servoY.center();
+    laser.off();
+    
 });
 
 // arduino <---> socket.
@@ -76,8 +83,8 @@ socket.on('message', function (e) {
     // so we multiply it by 170 to get a 0 to 170° angle
 
     if(e.sliderX && e.sliderY){
-        servoX.move(Math.floor(e.sliderX *170));
-        servoY.move(Math.floor(e.sliderY *170));
+        servoX.move(Math.floor(e.sliderX *180));
+        servoY.move(Math.floor(e.sliderY *180));
     }
     // or a web client incoming in the io server
     else if(e.client === "web"){
@@ -85,18 +92,19 @@ socket.on('message', function (e) {
         console.log(e.client);
     }
 
-    // TODO : create "briquet" and "mouvements" as libs to show module includes
+    else if(e.client === "webOff"){
+        onlineLed.off(); // it shut down the online led
+        console.log(e.client);
+    }
+    // TODO : create "mouvements" lib
     // or a light switch
     else if(e.noduinoEvent === 'ledSwitchAction'){
-        onlineLed.on();
+        briquet.ledSwitch(laser);
     }
     else if(e.noduinoEvent === 'ledStrobeAction'){
-        //briquet.ledPulse();
+        briquet.ledPulse();
     }
-    // or a mouvement
-    else if(e.noduinoEvent === 'headNoAction'){
-        //mouvements.headNo();
-    }
+
     // or a CAMERA INPUT, not sure i'll have time to hack that but in case ...
     // else if(e.camVal){
     //     /*
@@ -120,12 +128,10 @@ socket.on('message', function (e) {
     else if (e.noduinoEvent === 'controlled'){
         controlled=true;
         console.log(controlled);
-        console.log(e);
     }
     else if (e.noduinoEvent === 'notControlled'){
         controlled=false;
         console.log(controlled);
-        console.log(e);
     }
     // step recorder not implemented yet
     // else if (e.recStep){
@@ -139,7 +145,7 @@ socket.on('message', function (e) {
     // }
 
     // or log it
-    else{
+    if (config.cat.eventLog!==false){
         console.log(e);
     }
 

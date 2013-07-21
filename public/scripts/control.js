@@ -4,7 +4,6 @@ window.onload = function() {
     'use strict';
 
     var serverUrl="http://localhost:4000/";
-    //var serverUrl="http://192.168.2.191:4000/"
     var env = "dev",
         servInfo = (env === "prod")?'http://intense-basin-8769.herokuapp.com/':serverUrl,
         messages = [],
@@ -63,6 +62,21 @@ window.onload = function() {
         console.log(e);
     });
 
+    io.sockets.on('connection', function (socket) {
+    count++;
+    io.sockets.emit('count', {
+        number: count
+    });
+
+    socket.on('disconnect', function () {
+        console.log('DISCONNESSO!!! ');
+        count--;
+        io.sockets.emit('count', {
+            number: count
+        });
+    });
+});
+
     // sending message
     ledSwitchBt.onclick = function() {
         socket.emit('send', { noduinoEvent : "ledSwitchAction"});
@@ -76,7 +90,8 @@ window.onload = function() {
 
 };
 
-// convert position info in a 0 to 1 int so we can use the
+// convert position info in a 0 to 1 int so we can use a 
+// normalized value with differents actuators
 function scale (maxVal, val) {
     return val / maxVal;
 }

@@ -40,7 +40,8 @@ module.exports = (grunt) ->
 					'!public/components',
 					'!public/scripts/libs',
 					'*.js',
-					'public/scripts/*.js']
+					'public/scripts/*.js',
+					'lib/*.js']
 
 			options:
 				# browser: true

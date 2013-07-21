@@ -16,8 +16,8 @@ var express = require("express"),
     ));
 var count = 0;
 // used for unity launch a tcp server at port 5000
-//var tcpPort = require('./lib/tcpPortServer');
-//tcpPort();
+var tcpPort = require('./lib/tcpPortServer');
+tcpPort();
 
 // reduced log )
 io.set('log level', 1);
