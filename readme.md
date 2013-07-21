@@ -11,18 +11,19 @@ it is built to be simple, exposing control of key elements that could lead to mo
 - [x] tool list
 - [x] material list (done but not sure if i should point to hardware site)
 - hardware set up 
-    - [ ] tutorial (30%)
+    - [ ] hardware tutorial (50%)
     - [x] pict and illustration
   - [x] text for the led 
   - [x] diagram for servo
-- [x] clean the whole  (already done basic setup)
+  - [x] diagram for laser
+- [x] clean the repo
 - software tutorial
   - nodebot part
     - [x] basic led example
     - [x] repl test
-    - [ ] connecting the servos
+    - [X] connecting the servos
     - [ ] event chaining
-    - [ ] link to socket.io ?
+    - [X] link to socket.io ?
     - [ ] begin controller part
         - [x] web controller
           - [x] give basic html markup and system to control the device, since it all about the bots

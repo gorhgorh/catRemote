@@ -26,9 +26,6 @@
 // and it is javascript all the way.
 
 // variables
-//"use strict";
-
-
 
 var five = require('johnny-five'),  // johnny-five, enable us to talk to sir arduino
     util = require('util'),
@@ -42,8 +39,7 @@ var five = require('johnny-five'),  // johnny-five, enable us to talk to sir ard
     socket,
     client = require('socket.io-client'),
     servInfo = config.servInfo.url+':'+config.servInfo.port,
-    boardState,
-    truc
+    boardState
     ;
 
 // board initialisation
@@ -52,7 +48,7 @@ board.on('ready', function() {
     // in this section we will create instances for our hardware
     // This example allows the button module to
     // create a completely default instance
-    laser     = createLaser(12);     // cat mesmeriser
+    laser     = createLaser(12);     // cat mesmeriser created by a factory function to add initial state
     onlineLed = new five.Led(13);     // a led to test the board
     servoX    = new five.Servo(10);   // servo for the X axis
     servoY    = new five.Servo(9);    // servo for the Y axis
@@ -65,6 +61,7 @@ board.on('ready', function() {
         laser:laser,
         onlineLed: onlineLed
     });
+
     boardState = 'groovy'; // the board is available (used to prevent move order before init)
     console.log(servInfo);
     // center the bot, ensure the laser is off
@@ -84,7 +81,7 @@ socket.on('message', function (e) {
     // check if the message is a rotation value
     // then move the servo if it is one.
     // the page send a value between 0 and 1
-    // so we multiply it by 170 to get a 0 to 170° angle
+    // so we multiply it by 180 to get a 0 to 180° angle
 
     if(e.sliderX && e.sliderY){
         servoX.move(Math.floor(e.sliderX *180));
@@ -98,63 +95,23 @@ socket.on('message', function (e) {
 
     else if(e.client === "webOff"){
         onlineLed.off(); // it shut down the online led
-        console.log(e.client);
+        console.log("webclient is off");
     }
+
     // TODO : create "mouvements" lib
     // or a light switch
     else if(e.noduinoEvent === 'ledSwitchAction'){
         briquet.ledSwitch(laser);
     }
-    else if(e.noduinoEvent === 'ledStrobeAction'){
-        briquet.ledPulse();
-    }
 
-    // or a CAMERA INPUT, not sure i'll have time to hack that but in case ...
-    // else if(e.camVal){
-    //     /*
-    //         the cam stage is 320/240 0.0 is on the upper left corner
-    //         i converted input in % and multiplied for a 170° angle
-    //     */
-    //     if (controlled === false){
-    //         splitVal(e.camVal);
-    //         //console.log(cervoX);
-    //         if (boardState == "groovy"){
-    //             //console.log(cervoX + " : " + cervoY);
-    //             servo.move(cervoX);
-    //             servoY.move(cervoY);
-    //             //console.log(cervoX + "° : " + cervoY + "°");
-    //         }
-    //     }
-
-    // }
-
-    // or a controll input
-    else if (e.noduinoEvent === 'controlled'){
-        controlled=true;
-        console.log(controlled);
-    }
-    else if (e.noduinoEvent === 'notControlled'){
-        controlled=false;
-        console.log(controlled);
-    }
-    // step recorder not implemented yet
-    // else if (e.recStep){
-    //     splitVal(e.recStep);
-    //     if (boardState == "groovy"){
-    //         //console.log(cervoX + " : " + cervoY);
-    //         servo.move(cervoX);
-    //         servoY.move(cervoY);
-    //         //console.log(cervoX + "° : " + cervoY + "°");
-    //     }
-    // }
-
-    // or log it
+    // or log it if set in the config file
     if (config.cat.eventLog!==false){
         console.log(e);
     }
 
 });
-// factory funtion to add a on/off state
+
+// factory function to add a on/off state
 function createLaser(pin) {
     var laser = new five.Led(pin);
     laser.blink = { state:false };
