@@ -195,18 +195,26 @@
                 <p>
                     now that we can control light, let's star controlling motion as well, first thing first, lets connect our servomotors to the breadboard.
                 </p>
-                <p>
-                    <span class="label label-info">Note</span> not all servo have the same pin configuration as the one in the diagram. check yours first. <br>
-                    these 9g servos have 3 pins, positive, negative, and PWM, <a href="#pwm">Pulse Wave Modulation</a> is used to control the angle of your servo
-                    so connect positive and negative pins to the breadboard's power line
-   -;:                </p>
+                
+
                 <div class="row">
                     <div class="span8">
                         <img src="/images/02servos.jpg" class="boardPict" alt="">
                     </div>
+                    <div class="span4">
+                        <p>
+                            <span class="label label-info">Note</span> not all servo have the same pin configuration as the one in the diagram. check yours first. <br>
+                        </p>
+                        <p>
+                            these 9g servos have 3 pins, positive, negative, and PWM, <a href="#pwm">Pulse Wave Modulation</a> is used to control the angle of your servo sending faked analog wave to the servo to move it to the specified degree.
+                        </p>
+                        <p>
+                                so connect positive and negative pins to the breadboard's power line, then connect the pwm's servos to your arduino digital pins, 10 for the pan, 9 for the tilt
+                        </p>
+                    </div>
                 </div>
                 <p>
-                    
+                    let's finish the hardware part before coding more. Next is the laser.
                 </p>
 
             </div>
