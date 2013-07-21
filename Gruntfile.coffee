@@ -20,23 +20,19 @@ module.exports = (grunt) ->
 				imagesDir: 'public/images'
 
 		#Compass task
-		compass:
-			options:
-				cssDir: '<%= conf.path.cssDir %>'
-				sassDir: '<%= conf.path.sassDir %>'
-				imagesDir: '<%= conf.path.imgDir %>'
-				# specify: ['<%= conf.path.sassDir %>_baseStyle.scss', 'public/sass/jquery-ui-1.10.2.custom.scss']
-				javascriptsDir: '<%= conf.path.jsDir %>'
-				force: true
-			files:['<%= conf.path.sassDir %>']
+		
+		#Sass cause sourcemaps are sweet
 
-			dev:
-				options:
-					debugInfo :true
+		sass: # Task
+		    dist: # Target
+		      	options: # Target options
+		        	style: "expanded"
+		        	sourcemap: 'true'
 
-			prod:
-				options:
-					debugInfo :false
+		      	files: # Dictionary of files
+		        	"<%= conf.path.cssDir %>styles.css": "<%= conf.path.sassDir %>styles.scss" 
+		        	"<%= conf.path.cssDir %>bootstrap.css": "<%= conf.path.sassDir %>bootstrap.scss" 
+
 
 		# JSHint task
 		jshint:
@@ -44,7 +40,8 @@ module.exports = (grunt) ->
 					'!public/components',
 					'!public/scripts/libs',
 					'*.js',
-					'public/scripts/*.js']
+					'public/scripts/*.js',
+					'lib/*.js']
 
 			options:
 				# browser: true
@@ -91,8 +88,8 @@ module.exports = (grunt) ->
 				tasks: ['jshintage']
 
 			scss:
-				files: ['<%= compass.options.sassDir %>*.scss'],
-				tasks: ['compass:dev']
+				files: ['<%= conf.path.sassDir %>*.scss'],
+				tasks: ['sass']
 
 
 
@@ -104,7 +101,8 @@ module.exports = (grunt) ->
 	# Load Grunt plugins.
 	@loadNpmTasks "grunt-contrib-watch"
 	@loadNpmTasks "grunt-contrib-jshint"
-	@loadNpmTasks "grunt-contrib-compass"
+	# @loadNpmTasks "grunt-contrib-compass"
+	@loadNpmTasks "grunt-contrib-sass"
 	# @loadNpmTasks "grunt-contrib-coffee"
 
 

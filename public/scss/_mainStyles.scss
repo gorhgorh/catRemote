@@ -1,5 +1,7 @@
 @import "_bases.scss";
 
+
+
 .mainCont{margin-top: 60px;}
 
 // controller page styles
@@ -15,4 +17,8 @@
     height: 20px;
     background-color: #555;
     border-radius: 50%
+}
+.nodebotLogo{background-color: #F0DB4F;
+	text-align: center;
+	margin-top: 30px;
 }

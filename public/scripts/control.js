@@ -1,11 +1,10 @@
 // script to get postion to send to our cat laser tower
 
 window.onload = function() {
-    'use strict';
 
-
+    var serverUrl="http://localhost:4000/";
     var env = "dev",
-        servInfo = (env === "prod")?'http://intense-basin-8769.herokuapp.com/':"http://localhost:4000/",
+        servInfo = (env === "prod")?'http://intense-basin-8769.herokuapp.com/':serverUrl,
         messages = [],
         socket = io.connect(servInfo),
 
@@ -28,9 +27,9 @@ window.onload = function() {
     $( "#pointer" ).draggable({
         containment: "#pointerCont", // constaining
         scroll: false,
-        stop: function(ev, ui){
+
+        drag: function (ev, ui) {
             var position = ui.position;
-            var originalPosition = ui.originalPosition;
             var posX = scale(sceneX,position.left);
             var posY = scale(sceneY,position.top);
             socket.emit("send", {
@@ -62,6 +61,9 @@ window.onload = function() {
         console.log(e);
     });
 
+// end document ready    
+
+
     // sending message
     ledSwitchBt.onclick = function() {
         socket.emit('send', { noduinoEvent : "ledSwitchAction"});
@@ -75,7 +77,8 @@ window.onload = function() {
 
 };
 
-// convert position info in a 0 to 1 int so we can use the
+// convert position info in a 0 to 1 int so we can use a 
+// normalized value with differents actuators
 function scale (maxVal, val) {
     return val / maxVal;
 }

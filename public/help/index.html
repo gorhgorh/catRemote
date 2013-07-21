@@ -2,13 +2,359 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>help page</title>
+    <title>robot 101</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/prism.css">
 </head>
 <body>
-    help desk
 
-    <script src="/components/jquery/jquery.min.js"></script>
-    <script src="/scripts/libs/jquery-ui-1.10.3.custom.min.js"></script>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="/index.html">Cat remote</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="">
+                            <a href="/index.html">controller</a>
+                        </li>
+                        <li class="active">
+                            <a href="/help/index.html">set by step</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nodebotLogo">
+        <img src="/images/nodebotsday.v1.png" alt="">
+    </div>
+    <div class="container mainCont">
+
+        <section class="row" id="intro">
+            <div class="span12 stripeRow">
+                <div class="row ">
+                    <div class="row">
+                        <div class="span7"></div>
+                        <div class="span5">
+                            <h1 class="ttl">Node powered <br>cat remote control</h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="span12">
+                <div class="row">
+                    <div class="span4"><img src="/images/bioPict.jpg" alt=""></div>
+                    <div class="span8">
+                        <br><p>
+                            This project is a walk through simple control of a laser with 2 servo, allowing you to pan/tilt it, we will also explore simple control through a simple web server, all via javascript, thanks to firmata and johnny five. on top of that it will allow you to remotely control a cat while on a hangout with him, for example.
+                        </p>
+                        <p>
+                            it is roughly a guideline, and I encourage you to tweak it rather than follow it, if you find it too simple extend it as you with this is still the old javascript you work with every day, so extend it, commit changes, have fun, makes some cat happy !
+                            <h1>Happy nodebot's day</h1>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="span12">
+                <h1>Tool list</h1>
+                <ul>
+                    <li>little screwdriver</li>
+                    <li>Blu-Tack or similar</li>
+                    <li>wire</li>
+                    <li>third hand (optional, but handy)</li>
+                    <li>solder iron and solder (optional)</li>
+                </ul>
+                <p>the solder iron is used only to solder the laser cables, to make them easier to pin to to breadboard</p>
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="span12">
+                <h1>Hardware list</h1>
+                <ul>
+                    <li>1 arduino uno board</li>
+                    <li>1 bread board with power line (or not)</li>
+                    <li>few leds and 220 ohm resistor</li>
+                    <li>2 9g servo</li>
+                    <li>1 Laser Diode - 5mW whatever color</li>
+                    <li>1 servo bracket (optional)</li>
+                </ul>
+                <p>the servo brackets are a bit expensive, so if you don't plan to build a permanent laser tower you can use blue tack or similar for a temporary version</p>
+            </div>
+        </section>
+        <section class="row">
+            <div class="span12">
+                <h1>Software requirement</h1>
+                <ul>
+                    <li>node</li>
+                    <li>git</li>
+                    <li>your favorite javascript editor</li>
+                    <li>firmata uploaded to you arduino (see <a href="https://github.com/rwldrn/johnny-five" target="_blank">here</a> for details)</li>
+                </ul>
+            </div>
+        </section>
+        <section class="row" id="step01">
+            <div class="span12">
+                <h1>Step one, at the beginning there was one led</h1>
+                <p>
+                    first things first, to control a led we will need to link it to our board.
+                    <p>
+                        <span class="label label-warning">beginners note</span> always unplug the arduino before mounting components, I'm sure you knew about it, but, just in case :)
+                    </p>
+                    if you look at your arduino, you have 3 main lines of pins, 
+                    <ol>
+                        <li>power, where you will draw current to power your creations</li>
+                        <li>just below it, you have the analog line, it is an input you can "read" info from a potentiometer with it, by example</li>
+                        <li>digital pins, those pins can be configured either as input, either as output.</li>
+                    </ol>
+                </p>
+                <div class="row">
+                    <div class="span8">
+                        <img src="/images/01led.jpg" class="boardPict" alt="">
+                    </div>
+                    <div class="span4">
+                        <p>
+                            <span class="label label-info">Note</span> we are using two kind of electronic components here.
+                        <p>
+                        <p>
+                            the led, is an polarized component, so it has 2 different pins, the anode (+) is the longer one, and the cathode (-) is the smaller one, you need to connect your led's cathode to the ground, and the anode to your' arduino digital pin 13, allowing you to control via javascript.
+                        </p>
+                        <p>
+                            the resistor is not polarized, so we don't have to worry about the side we link power to it, we use it to lower the current that the arduino is delivering to the led thanks to <a href="https://en.wikipedia.org/wiki/Ohm's_law">ohm's law</a>
+                        </p>
+                    </div>
+                </div>
+                <p>
+                    the plan is to create a closed circuit linking the ground of the arduino's power line to the 13th digital pin. <br>
+                    there is no particular order to link things, but i usually start with the onboard components, so put the led on the board parallel to the power line, if you have one, then connect the anode (+, longest leg) to the resistor that you will also place in parallel to the power line,this resistor is used to reduce the amount of current in the led, that would not stand the 5v provided by the arduino. <br>
+                    We will then connect the led cathode (-) to breadboard ground power line (if you have one), then from the breadboard's ground to the arduino's ground <br>
+                    now we need to link the leg of the resistor that do not connect the led to the 13th digital pin of the arduino
+                    <p>
+                        our circuit is now closed, so it is time to jump on the computer 
+                    </p>
+                </p> 
+            </div>
+        </section>
+        <section class="row">
+            <div class="span12">
+                <h3>and now ladies and gentlemen ... javascript</h3>
+                <p>
+                    if you can read this, i can assume you cloned this repository if not go <a href="#additional">here</a> first
+                </p>
+                <p>
+                    open a terminal in the cloned repo and create a file, say myCat.js, open it in your editor
+                </p>
+                <p>let's take control of this led with command line !</p>
+<pre>
+    <code class="language-javascript">
+    var five = require("johnny-five"),  // johnny-five, enable us to talk to sir arduino
+        board = new five.Board(),       // it will contain objects that will allow us to manipulate hardware
+        onlineLed;                      // our fist piece of hardware, a little led
+
+    // borad initialisation
+    board.on("ready", function() {      // remember jquery ?
+
+        // in this section we will create an instance of the led object for our led
+        onlineLed = new five.Led(13);   // our led linked to the digital pin13
+
+        // inject our hardware in the Repl, so we can talk with it in the command line
+        board.repl.inject({
+            onlineLed: onlineLed
+        });
+    });
+    </code>
+</pre>
+                <p>
+                    now <code>node myCat.js</code> and let's see what we can do!
+                </p>
+                <p>
+                    <span class="label label-info">Note</span> if you look at the led while the board boots, you can see that it is blinking, and that it blinks at the same time that the arduino onboard led is blinking, this is because the 13 th pin is link to this onboard led, that tells us the status of the board (remember your pc's beeps ?)
+                </p>
+                <p>
+                    so now we have a REPL prompt, then ... <br>
+                    then, we can call our led instance, to see what this is all about, <code>onlineLed.on()</code> and, tada a new led is lit !
+                </p>
+                </p>
+                    if you want to see more, you could dig in the /node_modules/johnny-five/eg/led-*.js files, but for now you should know about <code>onlineLed.on()</code>, <code>onlineLed.off()</code>, and <code>onlineLed.on()</code> <code>onlineLed.pulse()</code> (to remember the good old blink times)
+                </p>
+            </div>
+        </section>
+        <section class="row" id="step02">
+            <div class="span12">
+                <h1>Step Two, adding motion</h1>
+                <p>
+                    now that we can control light, let's star controlling motion as well, first thing first, lets connect our servomotors to the breadboard.
+                </p>
+                <p>
+                    <span class="label label-info">Note</span> not all servo have the same pin configuration as the one in the diagram. check yours first. <br>
+                    these 9g servos have 3 pins, positive, negative, and PWM, <a href="#pwm">Pulse Wave Modulation</a> is used to control the angle of your servo
+                    so connect positive and negative pins to the breadboard's power line
+   -;:                </p>
+                <div class="row">
+                    <div class="span8">
+                        <img src="/images/02servos.jpg" class="boardPict" alt="">
+                    </div>
+                </div>
+                <p>
+                    
+                </p>
+
+            </div>
+        </section>
+        <section class="row" id="step03">
+            <div class="span12">
+                <h1>Step Three, laser action</h1>
+                <p>
+                    laser diagram TODO: explanation
+                    <ul>
+                        <li>why transistor</li>
+                        <li>transistor how to</li>
+                        <li>sample code ? (redundant with led code)</li>
+                    </ul>
+                </p>
+                <div class="row">
+                    <div class="span8">
+                        <img src="/images/03laser.jpg" class="boardPict" alt="">
+                    </div>
+                </div>
+                <p>
+
+                </p>
+
+            </div>
+            <div class="span12">
+                <h1>Step Four, Coding action</h1>
+                <p>
+                    explain furnished code
+                        <ul>
+                            <li>cat code</li>
+                            <li>server code</li>
+                            <li>possible extentions</li>
+                        </ul>
+                </p>
+                <!-- <div class="row">
+                    <div class="span8">
+                        <img src="/images/03laser.jpg" class="boardPict" alt="">
+                    </div>
+                </div> -->
+                <!-- <p>
+
+                </p> -->
+
+            </div>
+        </section>
+        <section class="row">
+
+            <div class="span12">
+                <h1 id="additional">additional infos</h1>
+                <h2>Resources</h2>
+                <h2 id="pwm">PWM</h2>
+                <p>
+                    PWM stand for Pulse Width Modulation, it is a trick to get analog like result with your digital pins, do do so it emit a square wave by altering low and high current each cycle is divided in 256 parts, here you are my precious 8bits !!! <br>
+                    more about pwm <a href="https://en.wikipedia.org/wiki/Pulse-width_modulation">here</a>
+                </p>
+                <h3>pwm waves</h3>
+<pre>
++----------------------------------------------------------------------------------+
+| 0% cycle (0)                                                                     |
+|----------------------------------------------------------------------------------|
+|                                                                                  |
+|                                                                                  |
+|                                                           5v                     |
+|                                                                                  |
+|                                                                                  |
+|                                                                                  |
+|                                                                                  |
+|                                                                                  |
+|+-------------------------------------------------------+  0v                     |
+|                                                                                  |
++----------------------------------------------------------------------------------+
+</pre>
+<pre>
++----------------------------------------------------------------------------------+
+| 25% cycle (64)                                                                   |
+|----------------------------------------------------------------------------------|
+|                                                                                  |
+|+--+          +--+          +--+          +--+             5v                     |
+||  |          |  |          |  |          |  |                                    |
+||  |          |  |          |  |          |  |                                    |
+||  |          |  |          |  |          |  |                                    |
+||  |          |  |          |  |          |  |                                    |
+||  |          |  |          |  |          |  |                                    |
+||  |          |  |          |  |          |  |                                    |
+|+  +----------+  +----------+  +----------+  +----------+  0v                     |
+|                                                                                  |
++----------------------------------------------------------------------------------+
+</pre>
+<pre>
++----------------------------------------------------------------------------------+
+| 50% cycle (127)                                                                  |
+|----------------------------------------------------------------------------------|
+|                                                                                  |
+|+------+      +------+      +------+      +------+         5v                     |
+||      |      |      |      |      |      |      |                                |
+||      |      |      |      |      |      |      |                                |
+||      |      |      |      |      |      |      |                                |
+||      |      |      |      |      |      |      |                                |
+||      |      |      |      |      |      |      |                                |
+||      |      |      |      |      |      |      |                                |
+|+      +------+      +------+      +------+      +------+  0v                     |
+|                                                                                  |
++----------------------------------------------------------------------------------+
+</pre>
+
+<pre>
++----------------------------------------------------------------------------------+
+| 75% cycle (191)                                                                  |
+|----------------------------------------------------------------------------------|
+|                                                                                  |
+|+---------+   +---------+   +---------+   +---------+      5v                     |
+||         |   |         |   |         |   |         |                             |
+||         |   |         |   |         |   |         |                             |
+||         |   |         |   |         |   |         |                             |
+||         |   |         |   |         |   |         |                             |
+||         |   |         |   |         |   |         |                             |
+||         |   |         |   |         |   |         |                             |
+|+         +---+         +---+         +---+         +---+  0v                     |
+|                                                                                  |
++----------------------------------------------------------------------------------+
+</pre>
+<pre>
++----------------------------------------------------------------------------------+
+| 100% cycle (255)                                                                 |
+|----------------------------------------------------------------------------------|
+|                                                                                  |
+|                                                                                  |
+|+-------------------------------------------------------+  5v                     |
+|                                                                                  |
+|                                                                                  |
+|                                                                                  |
+|                                                                                  |
+|                                                                                  |
+|                                                                                  |
+|                                                            0v                    |
+|                                                                                  |
+|                                                                                  |
++----------------------------------------------------------------------------------+
+</pre>
+
+            </div>
+        </section>
+    </div>
+
+    <script src="/scripts/libs/jquery.min.js"></script>
+    <script src="/scripts/libs/prism.js"></script>
+
+
 </body>
 </html>
