@@ -53,7 +53,7 @@
                     <div class="span4"><img src="/images/bioPict.jpg" alt=""></div>
                     <div class="span8">
                         <br><p>
-                            This project is a walk through simple control of a laser with 2 servo, allowing you to pan/tilt it, we will also explore simple control through a simple web server, all via javascript, thanks to firmata and johnny five. on top of that it will allow you to remotely control a cat while on a hangout with him, for example.
+                            This project is a walk through basic control of a laser with 2 servo, allowing you to pan/tilt it, we will also control it through a web server, all via javascript, thanks to firmata and johnny five. on top of that it will allow you to remotely control a cat while on a hangout with him, for example.
                         </p>
                         <p>
                             it is roughly a guideline, and I encourage you to tweak it rather than follow it, if you find it too simple extend it as you with this is still the old javascript you work with every day, so extend it, commit changes, have fun, makes some cat happy !
@@ -87,6 +87,7 @@
                     <li>few leds and 220 ohm resistor</li>
                     <li>2 9g servo</li>
                     <li>1 Laser Diode - 5mW whatever color</li>
+                    <li>1 transistor (BC547)</li>
                     <li>1 servo bracket (optional)</li>
                 </ul>
                 <p>the servo brackets are a bit expensive, so if you don't plan to build a permanent laser tower you can use blue tack or similar for a temporary version</p>
@@ -216,14 +217,28 @@
                 <p>
                     let's finish the hardware part before coding more. Next is the laser.
                 </p>
-
             </div>
         </section>
         <section class="row" id="step03">
             <div class="span12">
                 <h1>Step Three, laser action</h1>
                 <p>
-                    laser diagram TODO: explanation
+                    i will use our need of a laser to cover a few point worthwhile of attention when playing with electronics, first a bit of safety, laser ARE dangerous things, in Europe law prohibits laser too powerful, but, still you can easily burn your retina, so, while the idea of making cat's crazy lead me into this, be careful with it, while working withe the device, point it to the opposite wall, if you play with your cat, don't play on reflective soils, and dim it with tracing paper for playing. <br>
+                    then, laser also will draw lots of current, and your usb cable is not that good for that, it is supposed to deliver 5v at +/-500 mA per port, depending on the chip, and if it is a laptop, you could expect less ... <br>
+                </p>
+                <p>
+                    So, if you play with a few leds, of a lcd display, supplying that with current is not a problem, but to power lasers or actuators, you will need more power than that, if your setup is still not too big, you can supply dc power to your arduino's board directly, and that would do the trick, otherwise, if you need for example more current that what the arduino can provide, you can use external power supply, but then this power source and the attached hardware would be outside our circuit, so we would need to control it somehow.
+                <p>
+                <h3>lady's and gentlemen, let me introduce our guest, the transistor</h3>
+                <p>
+                    this is what will help us doing that, transistors are marvelous pieces of engineering, a little swiss knife in the electronic army, you can amplify, or modulate a signal with it, switching things on and even more ... this is that make all the zero and ones we play with all day, i love them so much for that !
+                </p>
+                <p>
+                    There are loads of transistor out there, and today we will play with bipolar transistor, mainly because there are some provided in all the starter kits out there, a little fellow named BC547, (or maybe a mosfet?). 
+                    basically divided in two main type, NPN and PNP, we will use NPN transitor for this project.
+                </p>
+                <p>
+                    NPN
                     <ul>
                         <li>why transistor</li>
                         <li>transistor how to</li>
