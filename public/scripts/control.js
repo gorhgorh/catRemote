@@ -1,5 +1,7 @@
 // script to get postion to send to our cat laser tower
 
+var board = require('../../../boardController.js');
+
 window.onload = function() {
     'use strict';
 
@@ -34,15 +36,18 @@ window.onload = function() {
             var posX = scale(sceneX,position.left);
             var posY = scale(sceneY,position.top);
             socket.emit("send", {
-                sliderX: posX,
-                sliderY: posY
+              action: board.defs.ACTION_LOOKAT,
+              params: [posX, posY]
             });
         }
     });
 
     // say hello when connecting
     socket.on('connect', function () {
-        socket.emit('send', { noduinoEvent: "webClientConnect", client : "web"});
+        socket.emit('send', { 
+          action: board.defs.ACTION_ACTIVATE,
+          params: true
+        });
     });
     // receving message from the server
     socket.on('message', function (e) {
@@ -79,10 +84,16 @@ window.onload = function() {
 
     // sending message
     ledSwitchBt.onclick = function() {
-        socket.emit('send', { noduinoEvent : "ledSwitchAction"});
+        socket.emit('send', {
+              action: board.defs.ACTION_SWITCH,
+              params: []
+            });
     };
     ledStrobeBt.onclick = function() {
-        socket.emit('send', { noduinoEvent : "ledStrobeAction"});
+        socket.emit('send', {
+              action: board.defs.ACTION_PULSE,
+              params: []
+            });
     };
     headNoBt.onclick = function() {
         socket.emit('send', { noduinoEvent : "headNoAction"});
