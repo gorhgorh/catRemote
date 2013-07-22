@@ -150,7 +150,7 @@
             <div class="span12">
                 <h3>and now ladies and gentlemen ... javascript</h3>
                 <p>
-                    if you can read this, i can assume you cloned this repository if not go <a href="#additional">here</a> first
+                    if you can read this, i can assume you cloned this repository if not go <a href="https://github.com/gorhgorh/catRemote" target="blank">here</a> first
                 </p>
                 <p>
                     open a terminal in the cloned repo and create a file, say myCat.js, open it in your editor
@@ -207,7 +207,7 @@
                             <span class="label label-info">Note</span> not all servo have the same pin configuration as the one in the diagram. check yours first. <br>
                         </p>
                         <p>
-                            these 9g servos have 3 pins, positive, negative, and PWM, <a href="#pwm">Pulse Wave Modulation</a> is used to control the angle of your servo sending faked analog wave to the servo to move it to the specified degree.
+                            these 9g servos have 3 pins, positive, negative, and PWM, <a href="#pwm">Pulse Width Modulation</a> is used to control the angle of your servo sending faked analog wave to the servo to move it to the specified degree.
                         </p>
                         <p>
                                 so connect positive and negative pins to the breadboard's power line, then connect the pwm's servos to your arduino digital pins, 10 for the pan, 9 for the tilt
@@ -239,6 +239,8 @@
                 </p>
                 <p>
                     NPN
+                </p>
+                <p>
                     <ul>
                         <li>why transistor</li>
                         <li>transistor how to</li>
@@ -288,6 +290,7 @@
                 </p>
                 <h3>pwm waves</h3>
 <pre>
+<code>
 +----------------------------------------------------------------------------------+
 | 0% cycle (0)                                                                     |
 |----------------------------------------------------------------------------------|
@@ -301,7 +304,7 @@
 |                                                                                  |
 |+-------------------------------------------------------+  0v                     |
 |                                                                                  |
-+----------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------+</code>
 </pre>
 <pre>
 +----------------------------------------------------------------------------------+
