@@ -53,11 +53,16 @@
                     <div class="span4"><img src="/images/bioPict.jpg" alt=""></div>
                     <div class="span8">
                         <br><p>
-                            This project is a walk through basic control of a laser with 2 servo, allowing you to pan/tilt it, we will also control it through a web server, all via javascript, thanks to firmata and johnny five. on top of that it will allow you to remotely control a cat while on a hangout with him, for example.
+
+                            This project shows you how to remotely control a cat via the power of an Ardunio, 2 servos and a LASER BEAM!
                         </p>
                         <p>
-                            it is roughly a guideline, and I encourage you to tweak it rather than follow it, if you find it too simple extend it as you with this is still the old javascript you work with every day, so extend it, commit changes, have fun, makes some cat happy !
-                            <h1>Happy nodebot's day</h1>
+                            We'll use the servos to control pan and tilt of a laser beam, which in turn seems to control the cat.
+                            We'll set up a simple web server that will allow us to control the servos, laser, and hence the cat, over the Internet, all via JavaScript thanks to firmata and johnny five.
+                        </p>
+                        <p>
+                            It is inteded to be a guide, and I encourage you to tweak as you like rather than follow it. It's just plain old JavaScript and some plugging in of cables, so do fork it, break it, extend it, have fun, and makes some cats happy!
+                            <h1>Happy NodeBots Day</h1>
                         </p>
                     </div>
                 </div>
@@ -72,9 +77,9 @@
                     <li>Blu-Tack or similar</li>
                     <li>wire</li>
                     <li>third hand (optional, but handy)</li>
-                    <li>solder iron and solder (optional)</li>
+                    <li>soldering iron and solder (optional)</li>
                 </ul>
-                <p>the solder iron is used only to solder the laser cables, to make them easier to pin to to breadboard</p>
+                <p>the soldering iron is used only to solder the laser cables, to make them easier to pin to to breadboard</p>
             </div>
         </section>
 
@@ -106,7 +111,7 @@
         </section>
         <section class="row" id="step01">
             <div class="span12">
-                <h1>Step one, at the beginning there was one led</h1>
+                <h1>Step one, in the beginning there was LED</h1>
                 <p>
                     first things first, to control a led we will need to link it to our board.
                     <p>
@@ -297,8 +302,8 @@
 | 0% cycle (0)                                                                     |
 |----------------------------------------------------------------------------------|
 |                                                                                  |
-|                                                                                  |
 |                                                           5v                     |
+|                                                                                  |
 |                                                                                  |
 |                                                                                  |
 |                                                                                  |
@@ -362,7 +367,6 @@
 | 100% cycle (255)                                                                 |
 |----------------------------------------------------------------------------------|
 |                                                                                  |
-|                                                                                  |
 |+-------------------------------------------------------+  5v                     |
 |                                                                                  |
 |                                                                                  |
@@ -370,8 +374,7 @@
 |                                                                                  |
 |                                                                                  |
 |                                                                                  |
-|                                                            0v                    |
-|                                                                                  |
+|                                                           0v                     |
 |                                                                                  |
 +----------------------------------------------------------------------------------+
 </pre>
