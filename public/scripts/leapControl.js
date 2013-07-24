@@ -19,6 +19,7 @@ Leap.loop(controllerOptions, function(frame) {
         
             posX = scale(frame.hands[0].palmPosition[0],150);
             posY = scale(frame.hands[0].palmPosition[1],150);
+            console.log(frame.hands[0].palmPosition[1]);
             if (posX >= 1) {
                 posX = 1;
             }
