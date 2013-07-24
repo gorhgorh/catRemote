@@ -21,7 +21,7 @@ var ALLOWED_ACTIONS = [
 
 function BoardController() {
   this.board = new five.Board();
-  board.on('ready', this.initBoard.bind(this));
+  this.board.on('ready', this.initBoard.bind(this));
 }
 
 var proto = BoardController.prototype;
@@ -54,13 +54,12 @@ proto.initBoard = function() {
   // inject our hardware in the Repl, so we can talk with
   // then in the command
   this.board.repl.inject({
-      servoX:servoX,
-      servoY:servoY,
-      laser:laser,
-      onlineLed: onlineLed
+      servoX:this.servoX,
+      servoY:this.servoY,
+      laser:this.laser,
+      onlineLed: this.onlineLed
   });
   this.boardState = 'groovy'; // the board is available (used to prevent move order before init)
-  console.log(servInfo);
   // center the bot, ensure the laser is off
   this.servoX.center();
   this.servoY.center();
