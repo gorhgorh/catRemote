@@ -54,17 +54,16 @@ proto.initBoard = function() {
   // inject our hardware in the Repl, so we can talk with
   // then in the command
   this.board.repl.inject({
-      servoX:this.servoX,
-      servoY:this.servoY,
-      laser:this.laser,
-      onlineLed: this.onlineLed
+      sX:this.servoX,
+      sY:this.servoY,
+      ls:this.laser,
+      ol:this.onlineLed
   });
   this.boardState = 'groovy'; // the board is available (used to prevent move order before init)
   // center the bot, ensure the laser is off
   this.servoX.center();
   this.servoY.center();
   this.laser.off();
-  
 }
 
 proto[defs.ACTION_LOOKAT] = function(x, y) {
