@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>laser control device</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="/index.html">Cat remote</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="">
+                            <a href="/index.html">controller</a>
+                        </li>
+                        <li class="">
+                            <a href="/help/index.html">set by step</a>
+                        </li>
+                        <li class="active">
+                            <a href="/leap.html">leapmotion</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mainCont">
+        <div class="row">
+            <div class="span12">
+                <button id="pause" onclick="togglePause()">Pause</button>
+                <input type="checkbox" id="pauseOnGesture" onclick="pauseForGestures()">Pause on gesture</input>
+                <h1>Leap JavaScript Sample</h1>
+                <div id="main">
+                  <h3>Frame data:</h3>
+                  <div id="frameData"></div>
+                  <div style="clear:both;"></div>
+                  <h3>Hand data:</h3>
+                  <div id="handData"></div>
+                  <div style="clear:both;"></div>
+                  <h3>Finger and tool data:</h3>
+                  <div id="pointableData"></div>
+                  <div style="clear:both;"></div>
+                  <h3>Gesture data:</h3>
+                  <div id="gestureData"></div>
+                </div>
+            </div>
+            <div class="span8">
+                contoller cont
+                <div id="pointerCont">
+                    <div id="pointer"></div>
+                </div>  
+                <div id="content" class="log" style=""></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/libs/socket.io.js"></script>
+    <script src="scripts/libs/leap.js"></script>
+    
+    <script src="/scripts/ioConnect.js"></script>
+    <script src="/scripts/leapControl.js"></script>
+</body>
+</html>

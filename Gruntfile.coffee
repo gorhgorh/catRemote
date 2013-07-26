@@ -19,8 +19,16 @@ module.exports = (grunt) ->
 				cssDir: 'public/css/'
 				imagesDir: 'public/images'
 
-		#Compass task
-		
+		#Asciify task
+		asciify:  
+		    banner:
+		      	text: "Linted" 
+
+		     	#Add the awesome to the console, and use the best font.
+		      	options: 
+		        	font:'graffiti'
+		        	log:true
+
 		#Sass cause sourcemaps are sweet
 
 		sass: # Task
@@ -85,7 +93,7 @@ module.exports = (grunt) ->
 				files: ['!node_modules',
 				'<%= jshint.files %>']
 
-				tasks: ['jshintage']
+				tasks: ['jshintage','asciify']
 
 			scss:
 				files: ['<%= conf.path.sassDir %>*.scss'],
@@ -103,6 +111,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-jshint"
 	# @loadNpmTasks "grunt-contrib-compass"
 	@loadNpmTasks "grunt-contrib-sass"
+	@loadNpmTasks "grunt-asciify"
 	# @loadNpmTasks "grunt-contrib-coffee"
 
 

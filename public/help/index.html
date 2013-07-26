@@ -26,6 +26,9 @@
                         <li class="active">
                             <a href="/help/index.html">set by step</a>
                         </li>
+                        <li class="">
+                            <a href="/leap.html">leapmotion</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -53,11 +56,16 @@
                     <div class="span4"><img src="/images/bioPict.jpg" alt=""></div>
                     <div class="span8">
                         <br><p>
-                            This project is a walk through simple control of a laser with 2 servo, allowing you to pan/tilt it, we will also explore simple control through a simple web server, all via javascript, thanks to firmata and johnny five. on top of that it will allow you to remotely control a cat while on a hangout with him, for example.
+
+                            This project shows you how to remotely control a cat via the power of an Ardunio, 2 servos and a LASER BEAM!
                         </p>
                         <p>
-                            it is roughly a guideline, and I encourage you to tweak it rather than follow it, if you find it too simple extend it as you with this is still the old javascript you work with every day, so extend it, commit changes, have fun, makes some cat happy !
-                            <h1>Happy nodebot's day</h1>
+                            We'll use the servos to control pan and tilt of a laser beam, which in turn seems to control the cat.
+                            We'll set up a simple web server that will allow us to control the servos, laser, and hence the cat, over the Internet, all via JavaScript thanks to firmata and johnny five.
+                        </p>
+                        <p>
+                            It is inteded to be a guide, and I encourage you to tweak as you like rather than follow it. It's just plain old JavaScript and some plugging in of cables, so do fork it, break it, extend it, have fun, and makes some cats happy!
+                            <h1>Happy NodeBots Day</h1>
                         </p>
                     </div>
                 </div>
@@ -72,9 +80,9 @@
                     <li>Blu-Tack or similar</li>
                     <li>wire</li>
                     <li>third hand (optional, but handy)</li>
-                    <li>solder iron and solder (optional)</li>
+                    <li>soldering iron and solder (optional)</li>
                 </ul>
-                <p>the solder iron is used only to solder the laser cables, to make them easier to pin to to breadboard</p>
+                <p>the soldering iron is used only to solder the laser cables, to make them easier to pin to to breadboard</p>
             </div>
         </section>
 
@@ -84,9 +92,12 @@
                 <ul>
                     <li>1 arduino uno board</li>
                     <li>1 bread board with power line (or not)</li>
-                    <li>few leds and 220 ohm resistor</li>
+                    <li>1 led</li>
+                    <li>220 ohm resistor</li>
+                    <li>560 ohm resistor</li>
                     <li>2 9g servo</li>
                     <li>1 Laser Diode - 5mW whatever color</li>
+                    <li>1 transistor (BC547)</li>
                     <li>1 servo bracket (optional)</li>
                 </ul>
                 <p>the servo brackets are a bit expensive, so if you don't plan to build a permanent laser tower you can use blue tack or similar for a temporary version</p>
@@ -105,7 +116,7 @@
         </section>
         <section class="row" id="step01">
             <div class="span12">
-                <h1>Step one, at the beginning there was one led</h1>
+                <h1>Step one, in the beginning there was LED</h1>
                 <p>
                     first things first, to control a led we will need to link it to our board.
                     <p>
@@ -149,7 +160,7 @@
             <div class="span12">
                 <h3>and now ladies and gentlemen ... javascript</h3>
                 <p>
-                    if you can read this, i can assume you cloned this repository if not go <a href="#additional">here</a> first
+                    if you can read this, i can assume you cloned this repository if not go <a href="https://github.com/gorhgorh/catRemote" target="blank">here</a> first
                 </p>
                 <p>
                     open a terminal in the cloned repo and create a file, say myCat.js, open it in your editor
@@ -195,52 +206,134 @@
                 <p>
                     now that we can control light, let's star controlling motion as well, first thing first, lets connect our servomotors to the breadboard.
                 </p>
-                <p>
-                    <span class="label label-info">Note</span> not all servo have the same pin configuration as the one in the diagram. check yours first. <br>
-                    these 9g servos have 3 pins, positive, negative, and PWM, <a href="#pwm">Pulse Wave Modulation</a> is used to control the angle of your servo
-                    so connect positive and negative pins to the breadboard's power line
-   -;:                </p>
+                
+
                 <div class="row">
                     <div class="span8">
                         <img src="/images/02servos.jpg" class="boardPict" alt="">
                     </div>
+                    <div class="span4">
+                        <p>
+                            <span class="label label-info">Note</span> not all servo have the same pin configuration as the one in the diagram. check yours first. <br>
+                        </p>
+                        <p>
+                            these 9g servos have 3 pins, positive, negative, and PWM, <a href="#pwm">Pulse Width Modulation</a> is used to control the angle of your servo sending faked analog wave to the servo to move it to the specified degree.
+                        </p>
+                        <p>
+                                so connect positive and negative pins to the breadboard's power line, then connect the pwm's servos to your arduino digital pins, 10 for the pan, 9 for the tilt
+                        </p>
+                    </div>
                 </div>
                 <p>
-                    
+                    let's finish the hardware part before coding more. Next is the laser.
                 </p>
-
             </div>
         </section>
         <section class="row" id="step03">
             <div class="span12">
                 <h1>Step Three, laser action</h1>
                 <p>
-                    laser diagram TODO: explanation
+                    i will use our need of a laser to cover a few point worthwhile of attention when playing with electronics, first a bit of safety.
+                </p>
+                <p> 
+                    <span class="label label-important">CAUTION</span> laser ARE dangerous things, in Europe law prohibits too powerful lasers, but, still you can easily burn your retina, so, while the idea of making cat's crazy lead me into this, be careful with it, while working withe the device, point it to the opposite wall, if you play with your cat, don't play on reflective soils, and dim it with tracing paper for playing.
+                </p>
+                <p>
+                    then, laser also will draw lots of current, and your usb cable is not that good for that, it is supposed to deliver 5v at +/-500 mA per port, depending on the chip, and if it is a laptop, you could expect less ... So, if you play with a few leds, of a lcd display, supplying that with current is not a problem, but to power lasers or actuators, you will need more power than that.
+                </p>
+                <p>
+                    if your setup is not too big, you can supply dc power to your arduino's board directly, and that would do the trick, otherwise, if you need for example more current that what the arduino can provide, you can use external power supply, but then this power source and the attached hardware would be outside our circuit, so we would need to control it somehow.
+                <p>
+                <h3>lady's and gentlemen, let me introduce our guest, the transistor</h3>
+                <p>
+                    this is what will help us doing that, transistors are marvelous pieces of engineering, a little swiss knife in the electronic army, you can amplify, or modulate a signal with it, switching things on and even more ... this is that make all the zero and ones we play with all day, i love them so much for that !
+                </p>
+                <p>
+                    There are loads of transistor out there, and today we will play with bipolar transistor, mainly because there are some provided in all the starter kits out there, a little fellow named <a href="http://arduino.cc/documents/datasheets/BC547.pdf" target="_blank">BC547</a>, (or maybe a mosfet?).
+                </p>
+                <p>
+                    basically divided in two main type, NPN and PNP, we will use NPN transistor for this project.<br>
+                    both type have 3 pins one collector, one base, and one emitter, in the NPN ones it allow the current to flow from the collector to the emitter IF the current in the base is higher that the emitter's one allowing the current to flow.
+                </p>
+                <p>
+                   by applying current to the base with our arduino, we will allow the current of the external source to flow.
+                </p>
+                <p>
+                    <span class="label label-info">Note</span> transistor's BC547 base is not meant to receive huge amount of current, so we will put a resistor between the base and the arduino's pin, i choose a common 560 ohm one, cause i had it laying around !
+                </p>
+                <p>
+                    let's create a second circuit to our breadboard, from the external power source to the laser to close it in the ground.
+                </p>
+                <p>
                     <ul>
-                        <li>why transistor</li>
-                        <li>transistor how to</li>
-                        <li>sample code ? (redundant with led code)</li>
+                        <li>put the laser plus and minus on your board</li>
+                        <li>plug you transistor on the board the flat side facing the breadboard powerline, left of the laser</li>
+                        <li>link the minus of the led to the emmiter</li>
+                        <li>
+                            link the base to the 560 ohms resistor
+                        </li>
+                        <li>link the other side of the 560 ohms resistor to pin 12 </li>
+                        <li>link the collector of the transistor to the powerline's ground</li>
+                        <li>link the plus of the external source to the plus of your laser</li>
+                        <li>link the minus of the external source to the powerline's ground</li>
                     </ul>
                 </p>
+
                 <div class="row">
                     <div class="span8">
                         <img src="/images/03laser.jpg" class="boardPict" alt="">
                     </div>
+                    <div class="span4">
+                        <span class="label label-info">Notes</span> you may need to solder your cable if they are not pinned already, but we'll manage these small details together !
+                        <p>
+                            more about transistor <a href="http://tronixstuff.wordpress.com/2010/06/07/electronic-components-the-transistor/">here</a> 
+                        </p>
+                    </div>
                 </div>
                 <p>
-
+                    there we are, we have a fully functional cat mesmerizer !
                 </p>
 
             </div>
             <div class="span12">
                 <h1>Step Four, Coding action</h1>
+                tl;dr : 
+                <ol>
+                    <li>clone the project</li>
+                    <li>cd /projetRepertory (if not yet there)</li>
+                    <li><code>node server</code> in a terminal</li>
+                    <li><code>node cat</code> in an other one</li>
+                    <li>open your browser to localhost:4000</li>
+                </ol>
                 <p>
-                    explain furnished code
-                        <ul>
-                            <li>cat code</li>
-                            <li>server code</li>
-                            <li>possible extentions</li>
-                        </ul>
+                    Since i know you all are code oriented geeks, rather than write a lot about simple Js patterns that you may already know about, 
+                    I decided that i will provide some heavily commented code examples, and leave you tweak it at your will. <br>
+                    but i won't leave you in the wild with no explanation either so here is a basic breakdown of the code furnished.
+
+                    <ul>
+                        <li>
+                            config.js : configuration file, alloy you to setup host adress and port, log generation and launch the tcp server </li>
+                        <li>
+                            server.js : code for the server, i separated the turret and the server code, to allow for a remote deployement of the service.
+                        </li>
+                        <li>
+                            cat.js : code for the turret
+                        </li>
+                        <li>
+                            lib/tcpPortServer : you can enable it in the config file, it is use for devices that are not compatible with websockets (i used it for a processing thing)
+                        </li>
+                        <li>
+                            lib/briquet.js : briquet (lighter in french) is a small literal object i use to configure led actions
+                        </li>
+                        <li>
+                            public/scripts/control.js : simple X/Y controller that send that to the io server. 
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    this code is simple, but yet more complex that it could have been, you could for example ditch the whole server and tcp socket stuff if you code the server and the tower in the same file no need for socket things. briquet.js is overkill, and i'm sure you can see thing that could be trimmed down.<br>
+                    I just felt that with these tools in hand, you could do way more than this simple example. no go, play, inspire me by showing me great stuff 
+                    <h1>START HACKING</h1>
                 </p>
                 <!-- <div class="row">
                     <div class="span8">
@@ -257,7 +350,10 @@
 
             <div class="span12">
                 <h1 id="additional">additional infos</h1>
+                <h2>thanks</h2>
+                <p>i would like to thanks @rwaldron, @vodootikigod, for making this all possible, @olizilla that showed us that we can actually do thing in europe, too, and to all of you nodebots lover, for all these exiting project and idea that ignited my brain !!!</p>
                 <h2>Resources</h2>
+                arrrrrrgggggh not enough time sorry :)
                 <h2 id="pwm">PWM</h2>
                 <p>
                     PWM stand for Pulse Width Modulation, it is a trick to get analog like result with your digital pins, do do so it emit a square wave by altering low and high current each cycle is divided in 256 parts, here you are my precious 8bits !!! <br>
@@ -265,10 +361,10 @@
                 </p>
                 <h3>pwm waves</h3>
 <pre>
+<code>
 +----------------------------------------------------------------------------------+
 | 0% cycle (0)                                                                     |
 |----------------------------------------------------------------------------------|
-|                                                                                  |
 |                                                                                  |
 |                                                           5v                     |
 |                                                                                  |
@@ -276,9 +372,10 @@
 |                                                                                  |
 |                                                                                  |
 |                                                                                  |
+|                                                                                  |
 |+-------------------------------------------------------+  0v                     |
 |                                                                                  |
-+----------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------+</code>
 </pre>
 <pre>
 +----------------------------------------------------------------------------------+
@@ -334,7 +431,6 @@
 | 100% cycle (255)                                                                 |
 |----------------------------------------------------------------------------------|
 |                                                                                  |
-|                                                                                  |
 |+-------------------------------------------------------+  5v                     |
 |                                                                                  |
 |                                                                                  |
@@ -342,8 +438,7 @@
 |                                                                                  |
 |                                                                                  |
 |                                                                                  |
-|                                                            0v                    |
-|                                                                                  |
+|                                                           0v                     |
 |                                                                                  |
 +----------------------------------------------------------------------------------+
 </pre>

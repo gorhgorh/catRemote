@@ -4,6 +4,10 @@ Project to kick start newcomers to the node>arduino world in the nodebot's day e
 
 it is built to be simple, exposing control of key elements that could lead to more exploration (lights,servo,connection via web, sensors are missing tho)
 
+feel free to use abuse and play with it (the code, not the cat, at least do not abuse it)
+
+Build robots to make cat's happy, closing the gap between cats and internet, my small contribution to make a better world 
+
 
 
 ###things to do :
@@ -11,7 +15,7 @@ it is built to be simple, exposing control of key elements that could lead to mo
 - [x] tool list
 - [x] material list (done but not sure if i should point to hardware site)
 - hardware set up 
-    - [ ] hardware tutorial (50%)
+    - [x] hardware tutorial 
     - [x] pict and illustration
   - [x] text for the led 
   - [x] diagram for servo
@@ -19,6 +23,7 @@ it is built to be simple, exposing control of key elements that could lead to mo
 - [x] clean the repo
 - software tutorial
   - nodebot part
+    - [ ] finish board initialisation / application logic separation
     - [x] basic led example
     - [x] repl test
     - [X] connecting the servos
@@ -29,6 +34,7 @@ it is built to be simple, exposing control of key elements that could lead to mo
           - [x] give basic html markup and system to control the device, since it all about the bots
           - [x] link input of the widget to socket.io
           - [x] extend the bot to act after the messages
+        - [X] basic leapmotion control
         - [ ] hardware joystick
           - [ ] hardware wirering
           - [ ] extend the bot to act after joystick input

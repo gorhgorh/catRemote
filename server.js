@@ -18,8 +18,11 @@ var express = require("express"),
     ));
 var count = 0;
 // used for unity launch a tcp server at port the configured port
-var tcpPortServer = require('./lib/tcpPortServer');
-tcpPortServer(tcpPort,servInfo);
+if (config.tcpPortServer.launch ===true){
+    var tcpPortServer = require('./lib/tcpPortServer');
+    tcpPortServer(tcpPort,servInfo);
+    console.log("tcpServer On");
+}
 
 // reduced log )
 io.set('log level', 1);
