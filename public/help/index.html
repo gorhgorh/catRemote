@@ -92,7 +92,9 @@
                 <ul>
                     <li>1 arduino uno board</li>
                     <li>1 bread board with power line (or not)</li>
-                    <li>few leds and 220 ohm resistor</li>
+                    <li>1 led</li>
+                    <li>220 ohm resistor</li>
+                    <li>560 ohm resistor</li>
                     <li>2 9g servo</li>
                     <li>1 Laser Diode - 5mW whatever color</li>
                     <li>1 transistor (BC547)</li>
@@ -254,20 +256,23 @@
                     both type have 3 pins one collector, one base, and one emitter, in the NPN ones it allow the current to flow from the collector to the emitter IF the current in the base is higher that the emitter's one allowing the current to flow.
                 </p>
                 <p>
-                   by applying current to the base with our arduino, we will allow the current of the external source to flow. 
+                   by applying current to the base with our arduino, we will allow the current of the external source to flow.
+                </p>
+                <p>
+                    <span class="label label-info">Note</span> transistor's BC547 base is not meant to receive huge amount of current, so we will put a resistor between the base and the arduino's pin, i choose a common 560 ohm one, cause i had it laying around !
                 </p>
                 <p>
                     let's create a second circuit to our breadboard, from the external power source to the laser to close it in the ground.
                 </p>
                 <p>
-
-                    
-
                     <ul>
                         <li>put the laser plus and minus on your board</li>
                         <li>plug you transistor on the board the flat side facing the breadboard powerline, left of the laser</li>
                         <li>link the minus of the led to the emmiter</li>
-                        <li>link the base to your arduiono's digital pin 12 </li>
+                        <li>
+                            link the base to the 560 ohms resistor
+                        </li>
+                        <li>link the other side of the 560 ohms resistor to pin 12 </li>
                         <li>link the collector of the transistor to the powerline's ground</li>
                         <li>link the plus of the external source to the plus of your laser</li>
                         <li>link the minus of the external source to the powerline's ground</li>
@@ -286,19 +291,49 @@
                     </div>
                 </div>
                 <p>
-
+                    there we are, we have a fully functional cat mesmerizer !
                 </p>
 
             </div>
             <div class="span12">
                 <h1>Step Four, Coding action</h1>
+                tl;dr : 
+                <ol>
+                    <li>clone the project</li>
+                    <li>cd /projetRepertory (if not yet there)</li>
+                    <li><code>node server</code> in a terminal</li>
+                    <li><code>node cat</code> in an other one</li>
+                    <li>open your browser to localhost:4000</li>
+                </ol>
                 <p>
-                    explain furnished code
-                        <ul>
-                            <li>cat code</li>
-                            <li>server code</li>
-                            <li>possible extentions</li>
-                        </ul>
+                    Since i know you all are code oriented geeks, rather than write a lot about simple Js patterns that you may already know about, 
+                    I decided that i will provide some heavily commented code examples, and leave you tweak it at your will. <br>
+                    but i won't leave you in the wild with no explanation either so here is a basic breakdown of the code furnished.
+
+                    <ul>
+                        <li>
+                            config.js : configuration file, alloy you to setup host adress and port, log generation and launch the tcp server </li>
+                        <li>
+                            server.js : code for the server, i separated the turret and the server code, to allow for a remote deployement of the service.
+                        </li>
+                        <li>
+                            cat.js : code for the turret
+                        </li>
+                        <li>
+                            lib/tcpPortServer : you can enable it in the config file, it is use for devices that are not compatible with websockets (i used it for a processing thing)
+                        </li>
+                        <li>
+                            lib/briquet.js : briquet (lighter in french) is a small literal object i use to configure led actions
+                        </li>
+                        <li>
+                            public/scripts/control.js : simple X/Y controller that send that to the io server. 
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    this code is simple, but yet more complex that it could have been, you could for example ditch the whole server and tcp socket stuff if you code the server and the tower in the same file no need for socket things. briquet.js is overkill, and i'm sure you can see thing that could be trimmed down.<br>
+                    I just felt that with these tools in hand, you could do way more than this simple example. no go, play, inspire me by showing me great stuff 
+                    <h1>START HACKING</h1>
                 </p>
                 <!-- <div class="row">
                     <div class="span8">
@@ -315,7 +350,10 @@
 
             <div class="span12">
                 <h1 id="additional">additional infos</h1>
+                <h2>thanks</h2>
+                <p>i would like to thanks @rwaldron, @vodootikigod, for making this all possible, @olizilla that showed us that we can actually do thing in europe, too, and to all of you nodebots lover, for all these exiting project and idea that ignited my brain !!!</p>
                 <h2>Resources</h2>
+                arrrrrrgggggh not enough time sorry :)
                 <h2 id="pwm">PWM</h2>
                 <p>
                     PWM stand for Pulse Width Modulation, it is a trick to get analog like result with your digital pins, do do so it emit a square wave by altering low and high current each cycle is divided in 256 parts, here you are my precious 8bits !!! <br>
