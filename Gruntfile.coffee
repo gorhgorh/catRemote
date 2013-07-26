@@ -22,7 +22,7 @@ module.exports = (grunt) ->
 		#Asciify task
 		asciify:  
 		    banner:
-		      	text: "NodeBots's Day" 
+		      	text: "Linted" 
 
 		     	#Add the awesome to the console, and use the best font.
 		      	options: 

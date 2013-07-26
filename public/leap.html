@@ -20,13 +20,13 @@
                 <a class="brand" href="/index.html">Cat remote</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li class="active">
+                        <li class="">
                             <a href="/index.html">controller</a>
                         </li>
                         <li class="">
                             <a href="/help/index.html">set by step</a>
                         </li>
-                        <li class="">
+                        <li class="active">
                             <a href="/leap.html">leapmotion</a>
                         </li>
                     </ul>
@@ -37,37 +37,38 @@
 
     <div class="container mainCont">
         <div class="row">
-            <div class="span4">
-                <div>
-                    <button type="button" class="btn btn-inverse btn-danger btn-mini" id="ledSwitchBt">light switch</button>
-                    <button type="button" class="btn btn-inverse btn-danger btn-mini" id="ledStrobeBt">light strobe</button>
-                </div>
-                <div>
-                    <button type="button" class="btn btn-inverse btn-danger btn-mini recBt" id="rec">record move</button>
-                    <button type="button" class="btn btn-inverse btn-danger btn-mini recBt" id="stop">stop</button>
-                    <button type="button" class="btn btn-inverse btn-danger btn-mini recBt" id="play">play</button>
-                </div>
-                <div>
-                    <button type="button" class="btn btn-inverse btn-danger btn-mini" id="headNoBt">No</button>
-
+            <div class="span12">
+                <button id="pause" onclick="togglePause()">Pause</button>
+                <input type="checkbox" id="pauseOnGesture" onclick="pauseForGestures()">Pause on gesture</input>
+                <h1>Leap JavaScript Sample</h1>
+                <div id="main">
+                  <h3>Frame data:</h3>
+                  <div id="frameData"></div>
+                  <div style="clear:both;"></div>
+                  <h3>Hand data:</h3>
+                  <div id="handData"></div>
+                  <div style="clear:both;"></div>
+                  <h3>Finger and tool data:</h3>
+                  <div id="pointableData"></div>
+                  <div style="clear:both;"></div>
+                  <h3>Gesture data:</h3>
+                  <div id="gestureData"></div>
                 </div>
             </div>
             <div class="span8">
                 contoller cont
                 <div id="pointerCont">
                     <div id="pointer"></div>
-                </div>
+                </div>  
                 <div id="content" class="log" style=""></div>
             </div>
         </div>
     </div>
 
-    <script src="/scripts/libs/jquery.min.js"></script>
-    <script src="/scripts/libs/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="scripts/libs/socket.io.js"></script>
-
-    <script src="/scripts/control.js"></script>
-
-
+    <script src="scripts/libs/leap.js"></script>
+    
+    <script src="/scripts/ioConnect.js"></script>
+    <script src="/scripts/leapControl.js"></script>
 </body>
 </html>
