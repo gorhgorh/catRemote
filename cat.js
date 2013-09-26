@@ -32,9 +32,9 @@ var five = require('johnny-five'),  // johnny-five, enable us to talk to sir ard
     config = require('./config'),   // configuration file, sharded with the server
     briquet = require('./lib/briquet.js'),   // configuration file, sharded with the server
     board = new five.Board(),       // initialise a board instance that will contain instance of our hardware
-    servoX,
+    servoX, // this will be the link with the X axis
     servoY,
-    laser,
+    laser, // self explanatory
     onlineLed,
     socket,
     client = require('socket.io-client'),
@@ -54,7 +54,7 @@ board.on('ready', function() {
     servoY    = new five.Servo(9);    // servo for the Y axis
 
     // inject our hardware in the Repl, so we can talk with
-    // then in the command
+    // then in the command line
     board.repl.inject({
         servoX:servoX,
         servoY:servoY,

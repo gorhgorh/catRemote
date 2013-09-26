@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="/scripts/libs/headtracker.js"></script>
+    <script src="scripts/libs/socket.io.js"></script>
+    <style>
+    	.fll{float: left;}
+    	body{margin: 0;}
+    </style>
+</head>
+<body>
+	<video id="inputVideo" class="fll" autoplay loop></video>
+	<canvas id="inputCanvas" class="fll" width="320" height="240" style="display:none"></canvas>
+	<div class="fll">
+		<p>
+			maxX <span id="maxX">0</span>
+		</p>
+		<p>
+			minX <span id="minX">0</span>
+		</p>
+		<p>
+			maxY <span id="maxY">0</span>
+		</p>
+		<p>
+			minY <span id="minY">0</span>
+		</p>
+		<p>
+			current X normalized <span id="currX">0</span>
+		</p>
+		<p>
+			current Y normalized <span id="currY">0</span>
+		</p>
+	</div>
+	<canvas id="debugCanv" width="320" height="240"></canvas>
+
+<script type="text/javascript">
+var maxX =0,
+  	minX =0,
+  	maxY =0,
+  	minY =0,
+  	videoInput = document.getElementById('inputVideo'),
+  	canvasInput = document.getElementById('inputCanvas'),
+  	maxXVal = document.getElementById('maxX'),
+  	minXVal = document.getElementById('minX'),
+  	maxYVal = document.getElementById('maxY'),
+  	minYVal = document.getElementById('minY'),
+  	currXVal = document.getElementById('currX'),
+  	currYVal = document.getElementById('currY'),
+  	currX,
+  	currY,
+  	prevX = 0,
+  	prevY = 0,
+  	currentX = 0,
+  	currentY =0;
+
+  	var htracker = new headtrackr.Tracker({detectionInterval : 50,debug:"debugCanv"});
+	htracker.init(videoInput, canvasInput);
+	htracker.start();
+
+	document.addEventListener('headtrackingEvent', 
+	function (event) {
+		if (event.x>maxX) {
+			maxX = event.x;
+			maxXVal.innerHTML = maxX;
+		}
+		else if (event.x<minX) {
+			minX = event.x;
+			minXVal.innerHTML = minX;
+		}
+		if (event.y>maxY) {
+			maxY = event.y;
+			maxYVal.innerHTML = maxY;
+		}
+		else if (event.y<minY) {
+			minY = event.y;
+			minYVal.innerHTML = minY;
+		}
+		currX=scaleX(event.x, 25);
+		currY=scaleY(event.y, 20);
+		currXVal.innerHTML = currX;
+		currYVal.innerHTML = currY;
+	}
+	
+);
+
+var scaleX = function (val, valMax) {
+    return (val + valMax) / valMax * 2;
+};
+var scaleY = function (val, valMax) {
+    return val  / valMax;
+};
+
+</script>
+
+
+</body>
+</html>

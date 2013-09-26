@@ -4,6 +4,7 @@ var paused = false;
 var pauseOnGesture = false;
 var i=0;
 
+
 // Setup Leap loop with frame callback function
 var controllerOptions = {enableGestures: true};
 
@@ -21,6 +22,7 @@ Leap.loop(controllerOptions, function(frame) {
             posX = scaleX(frame.hands[0].palmPosition[0],300);
             posY = scaleY(frame.hands[0].palmPosition[1],300);
             console.log (posX + '/' + posY);
+
             //console.log(frame.hands[0].palmPosition[1]);
             // if (posX >= 1) {
             //     posX = 1;
