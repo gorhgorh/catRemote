@@ -29,7 +29,6 @@
 
 var five = require('johnny-five'),  // johnny-five, enable us to talk to sir arduino
     util = require('util'),
-    config = require('./config'),   // configuration file, sharded with the server
     briquet = require('./lib/briquet.js'),   // configuration file, sharded with the server
     board = new five.Board(),       // initialise a board instance that will contain instance of our hardware
     servoX, // this will be the link with the X axis
@@ -38,7 +37,7 @@ var five = require('johnny-five'),  // johnny-five, enable us to talk to sir ard
     onlineLed,
     socket,
     client = require('socket.io-client'),
-    servInfo = config.servInfo.url+':'+config.servInfo.port,
+    servInfo = "localhost:4000",
     boardState
     ;
 

@@ -1,28 +1,33 @@
 // this is the socket.io server that will be used to send data
 // to the bot, it will also serve static html pages
-// for the tutorial part.
 
-// standard express server + socket.io on the configured port
+// variables definition
 var express = require("express"),
     app = express(),
-    config = require('./config'),
-    tcpPort = config.tcpPortServer.port,
+    config = {},
     http = require('http'),
-    servInfo = config.servInfo.url+':'+config.servInfo.port,
+    servInfo = "localhost:4000",
     server = http.createServer(app),
-    port = process.env.PORT || config.servInfo.port, // listen to heroku's port or config's port
+    port = 4000, // listen to heroku's port or config's port
     io = require('socket.io').listen(
     app.listen(port,function() {
         console.log("Listening on " + port);
         }
-    ));
-var count = 0;
-// used for unity launch a tcp server at port the configured port
-if (config.tcpPortServer.launch ===true){
-    var tcpPortServer = require('./lib/tcpPortServer');
-    tcpPortServer(tcpPort,servInfo);
-    console.log("tcpServer On");
-}
+    )),
+    count = 0;
+
+// configuration 
+config.servInfo = {};
+config.servInfo.url = 'http://localhost';
+config.servInfo.port = process.env.PORT || 4000;
+config.servInfo.tcpServer = false;
+config.servInfo.tcpServerPort = 4600;
+    
+config.cat = {};
+config.cat.eventLog = true;
+
+
+
 
 // reduced log )
 io.set('log level', 1);
