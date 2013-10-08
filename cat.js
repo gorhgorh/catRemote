@@ -37,9 +37,7 @@ var five = require('johnny-five'),  // johnny-five, enable us to talk to sir ard
     onlineLed,
     socket,
     client = require('socket.io-client'),
-    servInfo = "localhost:4000",
-    boardState
-    ;
+    servInfo = "http://localhost:4000";
 
 // board initialisation
 board.on('ready', function() {
@@ -61,12 +59,11 @@ board.on('ready', function() {
         onlineLed: onlineLed
     });
 
-    boardState = 'groovy'; // the board is available (used to prevent move order before init)
     console.log(servInfo);
-    // center the bot, ensure the laser is off
+    // center the bot
     servoX.center();
     servoY.center();
-    //laser.off();
+    laser.on();
     
 });
 
@@ -97,15 +94,9 @@ socket.on('message', function (e) {
         console.log("webclient is off");
     }
 
-    // TODO : create "mouvements" lib
     // or a light switch
     else if(e.noduinoEvent === 'ledSwitchAction'){
         briquet.ledSwitch(laser);
-    }
-
-    // or log it if set in the config file
-    if (config.cat.eventLog!==false){
-        console.log(e);
     }
 
 });

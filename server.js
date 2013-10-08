@@ -73,6 +73,8 @@ io.sockets.on('connection', function (socket) {
         console.log('diconnected!!! ');
         count--;
         console.log(count);
+
+        socket.emit('send', { noduinoEvent: "webClientConnect", client : "webOff"});
     });
 
 });

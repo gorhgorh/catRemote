@@ -10,8 +10,6 @@ window.onload = function() {
 
         // cached selectors
         ledSwitchBt = document.getElementById('ledSwitchBt'),
-        ledStrobeBt = document.getElementById('ledStrobeBt'),
-        headNoBt    = document.getElementById('headNoBt'),
 
         // positions
         slideX,
