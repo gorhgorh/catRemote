@@ -8,7 +8,7 @@ var express = require("express"),
     http = require('http'),
     servInfo = "localhost:4000",
     server = http.createServer(app),
-    port = 4000, // listen to heroku's port or config's port
+    port = 4000,
     io = require('socket.io').listen(
     app.listen(port,function() {
         console.log("Listening on " + port);
