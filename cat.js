@@ -37,7 +37,10 @@ var five = require('johnny-five'),  // johnny-five, enable us to talk to sir ard
     onlineLed,
     socket,
     client = require('socket.io-client'),
+    ngSplit = require('./lib/ngSplit'),
+
     servInfo = "http://localhost:4000";
+ngSplit();
 
 // board initialisation
 board.on('ready', function() {
