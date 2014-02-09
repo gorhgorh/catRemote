@@ -20,12 +20,12 @@ module.exports = (grunt) ->
 				imagesDir: 'public/images'
 
 		#Asciify task
-		asciify:  
+		asciify:
 		    banner:
-		      	text: "Linted" 
+		      	text: "Linted"
 
 		     	#Add the awesome to the console, and use the best font.
-		      	options: 
+		      	options:
 		        	font:'graffiti'
 		        	log:true
 
@@ -38,8 +38,8 @@ module.exports = (grunt) ->
 		        	sourcemap: 'true'
 
 		      	files: # Dictionary of files
-		        	"<%= conf.path.cssDir %>styles.css": "<%= conf.path.sassDir %>styles.scss" 
-		        	"<%= conf.path.cssDir %>bootstrap.css": "<%= conf.path.sassDir %>bootstrap.scss" 
+		        	"<%= conf.path.cssDir %>styles.css": "<%= conf.path.sassDir %>styles.scss"
+		        	"<%= conf.path.cssDir %>bootstrap.css": "<%= conf.path.sassDir %>bootstrap.scss"
 
 
 		# JSHint task
@@ -112,6 +112,7 @@ module.exports = (grunt) ->
 	# @loadNpmTasks "grunt-contrib-compass"
 	@loadNpmTasks "grunt-contrib-sass"
 	@loadNpmTasks "grunt-asciify"
+
 	# @loadNpmTasks "grunt-contrib-coffee"
 
 
