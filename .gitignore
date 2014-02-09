@@ -1,5 +1,4 @@
 node_modules
 *.sublime*
-components
-bower_components/
 .sass-cache
+bower_components
